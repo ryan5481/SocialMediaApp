@@ -1,6 +1,6 @@
 const Notifications = () => {
   return (
-    <div className="notificationsPage">
+    <div className="notificationsPage mainPage">
       Latest notifications are shown here.
     </div>
   );

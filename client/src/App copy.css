@@ -1,10 +1,30 @@
 body {
-  background-color: rgb(30, 30, 30);
+  background-color: lightcayn;
 }
 
-.mainPage {
-  position: absolute;
-  left: 200px;
+.navBar {
+  height: 100vh;
+}
+.logoSpace {
+  align: center;
+}
+.allIcons {
+  display: grid;
+  grid-template-rows: 35% 35% 35% 35% 35%;
+}
+.pfp {
+}
+
+.logo {
+  font-family: "Brush Script Mt", Lucida Handwriting, cursive;
+  color: white;
+  padding: 10px 10px 10px 10px;
+  font-size: 30px;
+}
+
+.bigLogo {
+  font-size: 50px;
+  padding: 0px 10px 0px 10px;
 }
 
 .button {
@@ -21,35 +41,31 @@ body {
   vertical-align: baseline;
 }
 
-/*NABVAR*/
+.editProfile {
+  background-color: #0066cc;
+}
+
+.signupButton {
+  background-color: #0066cc;
+}
+
+.loginButton {
+  background-color: #0066cc;
+}
+
+.logoutButton {
+  background-color: #dc143c;
+}
+
+/* NAVBAR*/
 .navBar {
-  height: 100vh;
-  text-align: center;
   background-color: black;
-  width: 120px;
+  width: 50px;
   bottom: -50px;
 }
 
-.logoSpace {
-  align: center;
-}
-.allIcons {
-  display: grid;
-  grid-template-rows: 35% 35% 35% 35% 35%;
-}
-.pfp {
-}
-
-.navBar h1 {
-  font-family: "Brush Script Mt", Lucida Handwriting, cursive;
+.navBarIcons {
   color: white;
-  padding: 10px 10px 10px 10px;
-  font-size: 30px;
-}
-
-.navBarIcon {
-  color: white;
-  width: 50px;
 }
 
 .homeButton {
@@ -60,25 +76,26 @@ body {
   border-radius: 50%;
 }
 
-/* PROFILE PAGE*/
-/* PROFILE PAGE*/
-/* PROFILE PAGE*/
-/* PROFILE PAGE*/
+body {
+  background-color: rgb(60, 60, 60);
+}
+
 /* PROFILE PAGE*/
 .profilePage {
   height: 100vh;
 }
 
 .profilePageContents {
-  width: 215%;
-  height: 100vh;
+  width: 84%;
+  height: 85%;
+  background-color: black;
   position: relative;
   left: 30px;
+  border-radius: 20px;
   margin: 20px 50px 50px 50px;
   padding: 30px 20px 30px 20px;
   display: grid;
   grid-template-rows: 1fr 1fr 2fr;
-  background-color: black;
 }
 
 .allProfileDetials {
@@ -92,7 +109,6 @@ body {
   grid-template-columns: 100px 150px 150px 100px;
   grid-row-gap: 30px;
   align-items: left;
-  color: white;
 }
 
 .profileDiv {
@@ -107,8 +123,8 @@ body {
 .pfp {
   position: relative;
   left: 30px;
-  width: 150px;
-  height: 150px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   background-color: grey;
 }
@@ -130,7 +146,6 @@ body {
 }
 
 .nameAndBio {
-  color: white;
   position: relative;
   left: 25%;
   display: grid;
@@ -140,7 +155,7 @@ body {
 
 .userBio {
   color: white;
-  background-color: white;
+  background-color: rgb(80, 80, 80);
   width: 500px;
   height: 100px;
   border-radius: 5px;
@@ -150,7 +165,6 @@ body {
 
 .postsSpace {
   text-align: center;
-  color: white;
 }
 
 .textField {
@@ -158,7 +172,7 @@ body {
   height: 35px;
   padding: 5px;
   border-radius: 8px;
-  border-color: white;
+  border-color: grey;
   border: 2px;
   font-family: Verdana, Helvetica, sans-serif;
   font-size: 17px;
@@ -167,27 +181,9 @@ body {
   vertical-align: baseline;
 }
 
-.editProfile {
-  background-color: #0066cc;
-}
-
-.signupButton {
-  background-color: #0066cc;
-}
-
-.loginButton {
-  background-color: #0066cc;
-}
-
-.logoutButton {
-  background-color: #dc143c;
-}
-
-/*AUTHENTICATION*/
-
-.form {
+.loginCard {
   position: absolute;
-  top: 50%;
+  top: 50%%;
   left: 25%;
   transform: translate(50%, 50%);
   display: grid;
@@ -205,16 +201,22 @@ body {
   padding: 0px 20px 50px 20px;
 }
 
-.form h1 {
-  font-size: 50px;
-  padding: 0px 10px 0px 10px;
-  color: white;
-  font-family: "Brush Script Mt", Lucida Handwriting, cursive;
-}
-
-.form h2 {
-  font-size: 40px;
-  color: white;
+.signUpCard {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  background-color: black;
+  border-radius: 20px;
+  text-align: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 350px;
+  height: 550px;
+  justify-content: center;
+  padding: 0px 20px 90px 20px;
 }
 
 .loginElement {
@@ -240,28 +242,23 @@ body {
 
 /* MESSAGES PAGE*/
 
-.mainPageContents {
-  color: white;
-  display: flex;
-  place-content: center;
-  align-items: center;
-  text-align: center;
-  vertical-align: middle;
-  margin: 40px 20px 40px 0px;
-  justify-content: center;
+.messagePageBox {
+  margin: 20px 50px 50px 50px;
+  height: 100vh;
 }
 
 .messagesPageBoxContents {
-  width: 1700px;
+  margin-color: white;
+  width: 1220px;
   display: grid;
-  height: 100%;
-  grid-template-columns: 1fr 3fr;
+  height: 90%;
+  grid-template-columns: 400px 1300px;
   background-color: black;
-  border-radius: 5px;
+  border-radius: 20px;
 }
 
 .messagesListColumn {
-  border-right: 0.5px solid white;
+  border-right: 4px solid rgb(45, 45, 45);
 }
 .chatBox {
 }
@@ -272,7 +269,7 @@ body {
   align-items: center;
   text-align: center;
   height: 70px;
-  border-bottom: 1px solid white;
+  border-bottom: 4px solid rgb(45, 45, 45);
 }
 .chatBoxHead {
   padding: 0px 30px 0px 30px;
@@ -280,18 +277,17 @@ body {
   align-items: center;
   text-align: center;
   height: 70px;
-  border-bottom: 1px solid white;
+  border-bottom: 4px solid rgb(45, 45, 45);
 }
 
 .chatBoxBody {
-  height: 750px;
+  height: 730px;
   vertical-align: middle;
 }
 
 .messageTypingFieldSpace {
   text-align: center;
   vertical-align: middle;
-  margin-bottom: 20px;
 }
 
 .messageInputField {
@@ -299,8 +295,8 @@ body {
   width: 90%;
   height: 60px;
   border-radius: 50px;
-  border-color: white;
-  border: 1px;
+  border-color: rgb(45, 45, 45);
+  border: 2px;
   font-family: Verdana, Helvetica, sans-serif;
   font-size: 17px;
   color: black;
@@ -309,35 +305,4 @@ body {
   padding-right: 30px;
   border: 1px solid grey;
   background-color: rgb(45, 45, 45);
-}
-
-.recentChat {
-  color: white;
-  padding: 3px 2px 3px 2px;
-  height: 80px;
-  border-color: white;
-  margin-radius: 2px;
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-}
-
-.recentChat img {
-  width: 60px;
-  border-radius: 50%;
-  color: white;
-  align-items: center;
-  text-align: center;
-  vertical-align: middle;
-  justify-content: center;
-}
-.recentChatRHS {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  text-align: left;
-}
-
-.recentChatRHSTop {
-  display: grid;
-  grid-template-rows: 50% 50%;
-  text-align: left;
 }

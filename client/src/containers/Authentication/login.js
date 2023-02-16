@@ -64,8 +64,9 @@ const Login = () => {
     navigate("/");
   };
   return (
-    <div>
-      <h1>Login</h1>
+    <div className="form">
+      <h1 className="logo">DeSocial</h1>
+      <h2 className="titleLabel">Login</h2>
       <Formik
         initialValues={{
           userId: "",
@@ -78,21 +79,26 @@ const Login = () => {
         }}
       >
         {({ errors, touched }) => (
-          <Form>
+          <Form className="loginFields">
             <Field
+              className="loginIdField loginElement textField"
               name="userId"
               placeHolder="Username, Email or Phone Number"
             />
             {errors.userId && touched.userId ? (
               <div>{errors.userId}</div>
             ) : null}
-            <Field name="password" placeHolder="Password" />
+            <Field
+              className="passwordField loginElement textField"
+              name="loginPasswordField"
+              placeHolder="Password"
+            />
             {errors.password && touched.password ? (
               <div>{errors.password}</div>
             ) : null}
 
             <button
-              className="button login"
+              className="button loginElement loginButton"
               type="submit"
               onClick={() => loggedIn()}
             >
@@ -101,12 +107,18 @@ const Login = () => {
           </Form>
         )}
       </Formik>
-      <p>
-        <Link to="">Forgot password</Link>
-      </p>
-      <p>
-        <Link to="/signup">SignUp</Link>
-      </p>
+      <div className="linksSpace">
+        <p>
+          <Link className="link" to="">
+            Forgot password
+          </Link>
+        </p>
+        <p>
+          <Link className="link" to="/signup">
+            SignUp
+          </Link>
+        </p>
+      </div>
     </div>
   );
 };

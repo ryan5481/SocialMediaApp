@@ -67,8 +67,9 @@ const SignupSchema = Yup.object().shape({
 
 const SignUp = () => {
   return (
-    <div>
-      <h1>Signup</h1>
+    <div className="form">
+      <h1>DeSocial</h1>
+      <h2>SignUp</h2>
       <Formik
         initialValues={{
           userId: "",
@@ -84,27 +85,48 @@ const SignUp = () => {
       >
         {({ errors, touched }) => (
           <Form>
-            <Field name="userId" placeHolder="Email or Phone Number" />
+            <Field
+              className="textField signUpElement"
+              name="userId"
+              placeHolder="Email or Phone Number"
+            />
             {errors.userId && touched.userId ? (
               <div>{errors.userId}</div>
             ) : null}
-            <Field name="fullName" placeHolder="Full Name" />
+            <Field
+              className="textField signUpElement"
+              name="fullName"
+              placeHolder="Full Name"
+            />
             {errors.fullName && touched.fullName ? (
               <div>{errors.fullName}</div>
             ) : null}
-            <Field name="password" placeHolder="Password" />
+            <Field
+              className="textField signUpElement"
+              name="password"
+              placeHolder="Password"
+            />
             {errors.password && touched.password ? (
               <div>{errors.password}</div>
             ) : null}
-            <Field name="confirmPassword" placeHolder="Confirm Password" />
+            <Field
+              className="textField signUpElement"
+              name="confirmPassword"
+              placeHolder="Confirm Password"
+            />
             {errors.confirmPassword && touched.confirmPassword ? (
               <div>{errors.confirmPassword}</div>
             ) : null}
-            <button type="submit">SignUp</button>
+            <button className="button signupButton signUpElement" type="submit">
+              SignUp
+            </button>
           </Form>
         )}
       </Formik>
-      Already have an account?<Link to={"/login"}>Login</Link>
+      <div className="linkSpace"></div>
+      <p className="link">
+        Already have an account? <Link to={"/login"}>Login</Link>
+      </p>
     </div>
   );
 };

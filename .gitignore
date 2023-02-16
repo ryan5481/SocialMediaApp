@@ -10,3 +10,5 @@ server/package-lock.json
 .env
 
 .prettierrc
+
+colors.txt
