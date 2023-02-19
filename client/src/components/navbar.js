@@ -1,31 +1,3 @@
-// import { Link } from "react-router-dom";
-// import "../App.css";
-
-// const Navbar = () => {
-//   return (
-//     <>
-//       <div className="nav">
-//         <p>
-//           <Link to="/">Dashboard</Link>
-//         </p>
-//         <p>
-//           <Link to="/messages">Messages</Link>
-//         </p>
-//         <p>
-//           <Link to="/contactsList">Contacts List</Link>
-//         </p>
-//         <p>
-//           <Link to="/settings">Settings</Link>
-//         </p>
-//       </div>
-//     </>
-//   );
-// };
-
-// export default Navbar;
-
-//=> ABOVE IS OLD CODE
-
 import * as React from "react";
 
 import { useNavigate } from "react-router-dom";

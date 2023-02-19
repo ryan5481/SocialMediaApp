@@ -5,15 +5,14 @@ import Login from "../containers/Authentication/login";
 import Home from "../containers/01-home";
 import { useSelector } from "react-redux";
 import SignUp from "../containers/Authentication/signup";
+import ErrorPage from "../containers/09-404errorPage";
 
 const ConditionalRoute = () => {
   const { isLoggedIn } = useSelector((state) => state.user);
-  if ((isLoggedIn = false)) {
-    return <GuestRoutes />;
-  } else if ((isLoggedIn = true)) {
+  if ((isLoggedIn = true)) {
     return <UserRoutes />;
   } else {
-    null;
+    return <GuestRoutes />;
   }
 };
 const GuestRoutes = () => {
@@ -22,6 +21,7 @@ const GuestRoutes = () => {
       <Route path="/" element={<Login />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/*" element={<ErrorPage />} />
     </Routes>
   );
 };
@@ -36,6 +36,7 @@ const UserRoutes = () => {
         <Route path="/profile" element={<Profile />} />
         <Route path="/create" element={<Create />} />
         <Route path="/settings" element={<Settings />} />
+        <Route path="/*" element={<ErrorPage />} />
       </Routes>
     </>
   );

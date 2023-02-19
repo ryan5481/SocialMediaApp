@@ -1,78 +1,101 @@
+import { useState } from "react";
 import CustomizedMenus from "./customStyledMenu";
 const MessageCard = (props) => {
   const friendsList = [
     {
       name: "Ryan ",
-      image: "https://tse3.mm.bing.net/th?id=OIP.-dyAc44bZ9N8l9VsRDEYLQHaHa",
-    },
-    {
-      name: "Sam ",
-      image: "https://tse3.mm.bing.net/th?id=OIP.-dyAc44bZ9N8l9VsRDEYLQHaHa",
-    },
-    {
-      name: "Ramy ",
-      image: "https://tse3.mm.bing.net/th?id=OIP.-dyAc44bZ9N8l9VsRDEYLQHaHa",
-    },
-    {
-      name: "Sita ",
-      image: "https://tse3.mm.bing.net/th?id=OIP.-dyAc44bZ9N8l9VsRDEYLQHaHa",
-    },
-    {
-      name: "Hari ",
-      image: "https://tse3.mm.bing.net/th?id=OIP.-dyAc44bZ9N8l9VsRDEYLQHaHa",
-    },
-    {
-      name: "Kalu ",
-      image: "https://tse3.mm.bing.net/th?id=OIP.-dyAc44bZ9N8l9VsRDEYLQHaHa",
-    },
-    {
-      name: "Hello ",
-      image: "https://tse3.mm.bing.net/th?id=OIP.-dyAc44bZ9N8l9VsRDEYLQHaHa",
+      image:
+        "https://i.seadn.io/gae/J1rI6-wQDwOGkBZFH5bZEeK2wGDtDjEmr1F6ETqtqrVOSPaJcyWUholf7qfPnIt5iYRwzSPK3llAYb-qKevfs_RAxJlUlUy2v9AaHA?auto=format&w=512",
     },
     {
       name: "Ryan ",
-      image: "https://tse3.mm.bing.net/th?id=OIP.-dyAc44bZ9N8l9VsRDEYLQHaHa",
+      image:
+        "https://i.seadn.io/gae/_EvnMVqD7jzTUD_tDxclJPVSrI700bIstQwH0TLIFXAcWOR8mW4NEqQAzoZmJXBtCH4HgBw_2gBj3E35gEQSP8jjgugvUtYlV1KnZJo?auto=format&w=1000",
     },
     {
       name: "Ryan ",
-      image: "https://tse3.mm.bing.net/th?id=OIP.-dyAc44bZ9N8l9VsRDEYLQHaHa",
+      image:
+        "https://i.seadn.io/gae/3-YG2Riwq84u6M3C3vJDFEmsq86V-_jSgb8SotETq2V2RTIhKck8P7jsln1wqtLwSLvxDKvU945ALUBhPg5Oqkg619F5k7xu6osdUA?auto=format&w=512",
     },
     {
       name: "Ryan ",
-      image: "https://tse3.mm.bing.net/th?id=OIP.-dyAc44bZ9N8l9VsRDEYLQHaHa",
+      image:
+        "https://i.seadn.io/gae/erhbSeEHyt0_SEbieIggdEEGZT-MtA4hM_RW84rJ4QsbX012eqk_xdbBQSARFyyG_axCYozv1HVXbMaSOVkBx0Cf7_UhUWa06eOgZeM?auto=format&w=1000",
     },
     {
       name: "Ryan ",
-      image: "https://tse3.mm.bing.net/th?id=OIP.-dyAc44bZ9N8l9VsRDEYLQHaHa",
+      image:
+        "https://www.proteomics.uni-freiburg.de/images/team/portrait-dummy.png/image",
     },
     {
       name: "Ryan ",
-      image: "https://tse3.mm.bing.net/th?id=OIP.-dyAc44bZ9N8l9VsRDEYLQHaHa",
+      image:
+        "https://www.proteomics.uni-freiburg.de/images/team/portrait-dummy.png/image",
     },
     {
       name: "Ryan ",
-      image: "https://tse3.mm.bing.net/th?id=OIP.-dyAc44bZ9N8l9VsRDEYLQHaHa",
+      image:
+        "https://www.proteomics.uni-freiburg.de/images/team/portrait-dummy.png/image",
     },
     {
       name: "Ryan ",
-      image: "https://tse3.mm.bing.net/th?id=OIP.-dyAc44bZ9N8l9VsRDEYLQHaHa",
+      image:
+        "https://www.proteomics.uni-freiburg.de/images/team/portrait-dummy.png/image",
     },
     {
       name: "Ryan ",
-      image: "https://tse3.mm.bing.net/th?id=OIP.-dyAc44bZ9N8l9VsRDEYLQHaHa",
+      image:
+        "https://www.proteomics.uni-freiburg.de/images/team/portrait-dummy.png/image",
     },
     {
       name: "Ryan ",
-      image: "https://tse3.mm.bing.net/th?id=OIP.-dyAc44bZ9N8l9VsRDEYLQHaHa",
+      image:
+        "https://www.proteomics.uni-freiburg.de/images/team/portrait-dummy.png/image",
+    },
+    {
+      name: "Ryan ",
+      image:
+        "https://www.proteomics.uni-freiburg.de/images/team/portrait-dummy.png/image",
+    },
+    {
+      name: "Ryan ",
+      image:
+        "https://www.proteomics.uni-freiburg.de/images/team/portrait-dummy.png/image",
+    },
+    {
+      name: "Ryan ",
+      image:
+        "https://www.proteomics.uni-freiburg.de/images/team/portrait-dummy.png/image",
+    },
+    {
+      name: "Ryan ",
+      image:
+        "https://www.proteomics.uni-freiburg.de/images/team/portrait-dummy.png/image",
+    },
+    {
+      name: "Ryan ",
+      image:
+        "https://www.proteomics.uni-freiburg.de/images/team/portrait-dummy.png/image",
+    },
+    {
+      name: "Ryan ",
+      image:
+        "https://www.proteomics.uni-freiburg.de/images/team/portrait-dummy.png/image",
     },
   ];
+
+  const [recentChatBgColor, setRecentChatBgColor] = useState("");
 
   return (
     <>
       {friendsList.map((item, id) => {
         return (
           <>
-            <div className="recentChat">
+            <div
+              className="recentChat"
+              style={{ backgroundColor: recentChatBgColor }}
+              onClick={(id) => setRecentChatBgColor("grey")}
+            >
               <div>
                 <img src={item.image}></img>
               </div>
