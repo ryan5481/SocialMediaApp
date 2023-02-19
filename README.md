@@ -54,9 +54,8 @@
    - `npm start`
 
 ## Preview
-
-![Screenshot 2023-02-19 at 1 53 58 PM](https://user-images.githubusercontent.com/73333847/219931643-f9093ac5-6171-46cf-a3aa-1766f9b4618d.png)
-![Screenshot 2023-02-19 at 2 00 49 PM](https://user-images.githubusercontent.com/73333847/219931800-56c1cdb3-9c55-4b5a-b7de-d7b9e355c96b.png)
-![Screenshot 2023-02-19 at 1 56 25 PM](https://user-images.githubusercontent.com/73333847/219931646-9e5a89c2-c8df-4e56-874d-c2841e00fdc1.png)
-![Screenshot 2023-02-19 at 1 55 45 PM](https://user-images.githubusercontent.com/73333847/219931651-ba0ef079-3dc5-4c6a-ba46-639d9acba35a.png)
+![Screenshot 2023-02-19 at 8 16 55 PM](https://user-images.githubusercontent.com/73333847/219947388-d4c9b6d7-4352-4b94-aa6f-62f342148e9d.png)
+![Screenshot 2023-02-19 at 8 17 15 PM](https://user-images.githubusercontent.com/73333847/219947402-bd749587-29ed-4cf4-b2c0-54d8c73a31d2.png)
+![Screenshot 2023-02-19 at 8 17 44 PM](https://user-images.githubusercontent.com/73333847/219947424-2f8009e8-eec5-4749-9f73-8e247930843c.png)
+![Screenshot 2023-02-19 at 8 17 57 PM](https://user-images.githubusercontent.com/73333847/219947431-8900414c-72bc-482b-b8fc-2b43274b9a3b.png)
 
