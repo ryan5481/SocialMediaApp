@@ -46,7 +46,7 @@
     - [ ] Log out
 
 ## Usage
-- `npm'
+- `npm`
 - `npm install`
  - `cd client`
    - `npm start`
