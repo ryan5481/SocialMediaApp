@@ -49,7 +49,7 @@
 - `npm'
 - `npm install`
  - `cd client`
- - `npm start`
+   - `npm start`
  - `cd server`
    - `npm start`
 
