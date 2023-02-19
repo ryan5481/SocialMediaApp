@@ -23,10 +23,10 @@
 - [x] Login page
   - [ ] Reset password
 
-- [ ] Addresses page
- - [ ] Search usernaame, email, phone number to  add friends
- - [ ]  Delete friends
- - [ ] Start a new conversation 
+- [x] Addresses page
+  - [ ] Search other users and add as friend
+  - [ ] Delete friends from the list
+  - [ ] Start a new conversation
 
 - [x] Messages page
   - [x] Recent conversations
