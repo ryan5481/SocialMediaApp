@@ -1,5 +1,6 @@
 import { useState } from "react";
 import CustomizedMenus from "./customStyledMenu";
+
 const MessageCard = (props) => {
   const friendsList = [
     {
@@ -94,7 +95,6 @@ const MessageCard = (props) => {
             <div
               className="recentChat"
               style={{ backgroundColor: recentChatBgColor }}
-              onClick={(id) => setRecentChatBgColor("grey")}
             >
               <div>
                 <img src={item.image}></img>

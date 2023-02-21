@@ -60,18 +60,15 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const loggedIn = () => {
-    dispatch(loginStatus());
-    navigate("/");
+    dispatch(loginStatus(true));
+    navigate("/messages");
   };
   return (
     <div className="form">
-      <h1 className="logo">DeSocial</h1>
+      <h1 className="logo">Social</h1>
       <h2 className="titleLabel">Login</h2>
       <Formik
-        initialValues={{
-          userId: "",
-          password: "",
-        }}
+        initialValues={{}}
         validationSchema={SignupSchema}
         onSubmit={(values) => {
           // same shape as initial values
@@ -83,7 +80,7 @@ const Login = () => {
             <Field
               className="loginIdField loginElement textField"
               name="userId"
-              placeHolder="Username, Email or Phone Number"
+              placeholder="Username, Email or Phone Number"
             />
             {errors.userId && touched.userId ? (
               <div>{errors.userId}</div>
@@ -91,7 +88,7 @@ const Login = () => {
             <Field
               className="passwordField loginElement textField"
               name="loginPasswordField"
-              placeHolder="Password"
+              placeholder="Password"
             />
             {errors.password && touched.password ? (
               <div>{errors.password}</div>

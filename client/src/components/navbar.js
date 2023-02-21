@@ -1,71 +1,45 @@
 import * as React from "react";
 
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector, useEffect } from "react-redux";
-import { TiHome } from "react-icons/ti";
+import { useDispatch, useSelector } from "react-redux";
 import { BsFillChatFill, BsFillHeartFill } from "react-icons/bs";
-import { MdAddBox } from "react-icons/md";
+import { MdSettings } from "react-icons/md";
 
 const CustomNavbar = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const { isLoggedIn } = useSelector((state) => state.user);
+  const navigate = useNavigate();
 
-  return isLoggedIn ? (
+  return (
     <>
       <div className="navBar">
-        <div className=" logoSpace " onClick={() => navigate("/home")}>
+        <div className=" logoSpace ">
           <h1>DeSocial</h1>
         </div>
         <div className="allIcons">
-          <div>
-            <TiHome
-              className=" navBarIcon homeButton"
-              size={32}
-              onClick={() => navigate("/home")}
-            />
+          <div className="navBarItem" onClick={() => navigate("/messages")}>
+            <BsFillChatFill className="navBarIcon messagesButton" size={30} />
+            <p>Message</p>
           </div>
-          <div>
-            <BsFillChatFill
-              className="navBarIcon messagesButton"
-              size={30}
-              onClick={() => navigate("/messages")}
-            />
+
+          <div className="navBarItem" onClick={() => navigate("/settings")}>
+            <MdSettings className="navBarIcon notificationsButton" size={35} />
+            <p>Settings</p>
           </div>
-          <div>
-            <BsFillHeartFill
-              className="navBarIcon notificationsButton"
-              size={30}
-              onClick={() => navigate("/notifications")}
-            />
-          </div>
-          <div>
+          <div className="navBarItem" onClick={() => navigate("/profile")}>
             <img
               src={
                 "https://tse2.mm.bing.net/th?id=OIP.9B2RxsHDB_s7FZT0mljnhQHaHa"
               }
               alt="Avatar"
               className="navBarIcon profileButton"
-              size={30}
-              onClick={() => navigate("/profile")}
+              size={28}
             ></img>
-          </div>
-          <div>
-            <MdAddBox
-              className="navBarIcon createButton"
-              size={32}
-              onClick={() => navigate("/create")}
-            />
+            <p>Profile</p>
           </div>
         </div>
       </div>
     </>
-  ) : (
-    <div>
-      {(useEffect) => {
-        navigate("/login");
-      }}
-    </div>
   );
 };
 export default CustomNavbar;
