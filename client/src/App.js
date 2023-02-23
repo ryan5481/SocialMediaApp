@@ -4,7 +4,7 @@ import Login from "./containers/Authentication/login";
 import Signup from "./containers/Authentication/signup";
 import Profile from "./containers/05-profile";
 import ErrorPage from "./containers/09-404errorPage";
-import TransitionsSnackbar from "./components/forms/alerts/snackBar";
+import NotificationCard from "./components/forms/alerts/notification";
 
 const App = () => {
   return (
@@ -17,7 +17,7 @@ const App = () => {
         <Route path="/profile" element={<Profile />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
-      {/* <TransitionsSnackbar /> */}
+      <NotificationCard />
     </>
   );
 };

@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { loginStatus } from "../redux/reducers/userSlice";
+import { setLoginDetails } from "../redux/reducers/userSlice";
 import { MdSettings } from "react-icons/md";
 import CustomNavbar from "../components/navbar";
 
@@ -11,7 +11,7 @@ const Profile = () => {
   const navigate = useNavigate();
   const loggedOut = () => {
     navigate("/login");
-    dispatch(loginStatus());
+    dispatch(setLoginDetails());
   };
   return (
     <>

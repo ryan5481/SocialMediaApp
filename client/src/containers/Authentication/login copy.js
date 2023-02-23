@@ -65,13 +65,13 @@ const Login = () => {
     dispatch(setLoginDetails(true));
   };
 
-  const triggerLogin = async (values) => {
-    const res = axios.post(`http://localhost/8000/login`, values);
-    console.log(res);
-    if (res.status == 200) {
-      dispatch(setLoginDetails(res.data.token));
-    }
-    navigate("/messages");
+  const triggerLogin = async () => {
+    // debugger;
+    // const res = axios.post(`http://localhost/8000/login`, values);
+    // if (res.status == 200) {
+    //   dispatch(setLoginDetials(res.data.token));
+    // }
+    navigate("/");
   };
 
   return (
@@ -80,25 +80,24 @@ const Login = () => {
       <h2 className="titleLabel">Login</h2>
       <Formik
         initialValues={{}}
+        validationSchema={SignupSchema}
         onSubmit={(values) => {
-          triggerLogin(values);
+          console.log("HIIIIII");
         }}
       >
         {({ errors, touched }) => (
           <Form className="loginFields">
             <Field
-              name="phoneNumber"
-              id="phoneNumber"
               className="loginIdField loginElement textField"
+              name="userId"
               placeholder="Username, Email or Phone Number"
             />
             {errors.userId && touched.userId ? (
               <div>{errors.userId}</div>
             ) : null}
             <Field
-              name="password"
-              id="password"
               className="passwordField loginElement textField"
+              name="loginPasswordField"
               placeholder="Password"
             />
             {errors.password && touched.password ? (

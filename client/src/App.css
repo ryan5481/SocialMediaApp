@@ -40,6 +40,10 @@ body {
   gap: 50px;
 }
 
+.navBarItem :hover {
+  background-color: rgb(15, 15, 15);
+}
+
 .navBarItem {
   display: grid;
   grid-template-columns: 10% 80%;
@@ -210,9 +214,9 @@ body {
 /*AUTHENTICATION*/
 
 .form {
-  position: absolute;
-  top: 25%;
-  left: 50%;
+  position: relative;
+  top: 50px;
+  z-index: 1;
   border-radius: 20px;
   background-color: black;
   margin-left: auto;
@@ -423,6 +427,17 @@ body {
   grid-template-columns: 3fr 1fr;
 }
 
-.e:hover {
+.e :hover {
   background-color: #ff0000;
+}
+/* NOTIFICATION */
+/* NOTIFICATION */
+/* NOTIFICATION */
+
+.notification-card {
+  display: grid;
+  place-content: center;
+  align-items: center;
+  vertical-align: middle;
+  justify-content: center;
 }
