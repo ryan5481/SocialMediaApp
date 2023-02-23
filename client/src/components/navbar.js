@@ -1,113 +1,45 @@
-// import { Link } from "react-router-dom";
-// import "../App.css";
-
-// const Navbar = () => {
-//   return (
-//     <>
-//       <div className="nav">
-//         <p>
-//           <Link to="/">Dashboard</Link>
-//         </p>
-//         <p>
-//           <Link to="/messages">Messages</Link>
-//         </p>
-//         <p>
-//           <Link to="/contactsList">Contacts List</Link>
-//         </p>
-//         <p>
-//           <Link to="/settings">Settings</Link>
-//         </p>
-//       </div>
-//     </>
-//   );
-// };
-
-// export default Navbar;
-
-//=> ABOVE IS OLD CODE
-
 import * as React from "react";
 
-import Sheet from "@mui/joy/Sheet";
-import Settings from "@mui/icons-material/Settings";
-import Person from "@mui/icons-material/Person";
-import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
-import ChatBubbleRoundedIcon from "@mui/icons-material/ChatBubbleRounded";
-import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
-import AddBoxRoundedIcon from "@mui/icons-material/AddBoxRounded";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-
-// The Menu is built on top of Popper v2, so it accepts `modifiers` prop that will be passed to the Popper.
-// https://popper.js.org/docs/v2/modifiers/offset/
+import { BsFillChatFill, BsFillHeartFill } from "react-icons/bs";
+import { MdSettings } from "react-icons/md";
 
 const CustomNavbar = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const { isLoggedIn } = useSelector((state) => state.user);
-  const [menuIndex, setMenuIndex] = React.useState(null);
-  const itemProps = {
-    onClick: () => setMenuIndex(null),
-  };
-  const createHandleLeaveMenu = (index) => (getIsOnButton) => {
-    setTimeout(() => {
-      const isOnButton = getIsOnButton();
-      if (!isOnButton) {
-        setMenuIndex((latestIndex) => {
-          if (index === latestIndex) {
-            return null;
-          }
-          return latestIndex;
-        });
-      }
-    }, 200);
-  };
+  const navigate = useNavigate();
 
   return (
-    <div className="navBar">
-      <div className=" logoSpace " onClick={() => navigate("/home")}>
-        Logo
-      </div>
-      <div className="allIcons">
-        <div>
-          <HomeRoundedIcon
-            className=" navBarIcons homeButton"
-            onClick={() => navigate("/home")}
-          />
+    <>
+      <div className="navBar">
+        <div className=" logoSpace ">
+          <h1>DeSocial</h1>
         </div>
-        <div>
-          <ChatBubbleRoundedIcon
-            className="navBarIcons messagesButton"
-            onClick={() => navigate("/messages")}
-          />
-        </div>
-        <div>
-          <FavoriteRoundedIcon
-            className="navBarIcons notificationsButton"
-            onClick={() => navigate("/notifications")}
-          />
-        </div>
-        <div>
-          <Person
-            className="navBarIcons profileButton"
-            onClick={() => navigate("/profile")}
-          />
-        </div>
-        <div>
-          <AddBoxRoundedIcon
-            className="navBarIcons createButton"
-            onClick={() => navigate("/create")}
-          />
-        </div>
-        <div>
-          <Settings
-            className="navBarIcons settingsButton"
-            onClick={() => navigate("/settings")}
-          />
+        <div className="allIcons">
+          <div className="navBarItem" onClick={() => navigate("/messages")}>
+            <BsFillChatFill className="navBarIcon messagesButton" size={30} />
+            <p>Message</p>
+          </div>
+
+          <div className="navBarItem" onClick={() => navigate("/settings")}>
+            <MdSettings className="navBarIcon notificationsButton" size={35} />
+            <p>Settings</p>
+          </div>
+          <div className="navBarItem" onClick={() => navigate("/profile")}>
+            <img
+              src={
+                "https://tse2.mm.bing.net/th?id=OIP.9B2RxsHDB_s7FZT0mljnhQHaHa"
+              }
+              alt="Avatar"
+              className="navBarIcon profileButton"
+              size={28}
+            ></img>
+            <p>Profile</p>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 export default CustomNavbar;
