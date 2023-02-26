@@ -6,13 +6,14 @@ const app = express();
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
-
-const secretKey = process.env.JWT_PRIVATE_KEY;
+const GetInputTextType = require("./utils/getInputTextType");
 require("dotenv").config();
+
+const PRIVATE_KEY = process.env.JWT_PRIVATE_KEY;
 
 app.use(cors());
 app.use(express.json());
-const port = 8000;
+const port = 9000;
 
 const connectDb = async () => {
   try {
@@ -26,6 +27,46 @@ const connectDb = async () => {
 };
 
 connectDb();
+
+const generateToken = async (key, value) => {
+  try {
+    const token = await jwt.sign({ [key]: value }, PRIVATE_KEY);
+    return token;
+  } catch (e) {
+    console.log("Error", e);
+  }
+};
+
+app.post("/login", async (req, res) => {
+  const loginInputField = GetInputTextType(req.body.loginInputText);
+
+  const token = await generateToken(loginInputField, req.body.loginInputText);
+
+  const data = await Users.findOne({
+    [loginInputField]: req.body.loginInputText,
+  });
+
+  if (data) {
+    bcrypt.compare(req.body.password, data.password, function (err, result) {
+      console.log(result);
+      if (result) {
+        res.status(200).json({
+          msg: "Logged in successfully.",
+          token,
+        });
+      } else {
+        res.status(401).json({
+          msg: "Incorrect password.",
+        });
+      }
+    });
+    console.log(token);
+  } else {
+    res.status(403).json({
+      msg: "Incorrect credentials.",
+    });
+  }
+});
 
 const userSchema = new Schema({
   fullname: { type: String },
@@ -55,46 +96,20 @@ app.post("/signup", async (req, res) => {
   }
 });
 
-app.post("/login", async (req, res) => {
-  const data = await Users.findOne({ phoneNumber: req.body.phoneNumber });
-  if (data) {
-    bcrypt.compare(req.body.password, data.password, function (err, result) {
-      if (result) {
-        res.json({
-          msg: "Logged in successfully.",
-        });
-      } else {
-        res.json({
-          msg: "Incorrect password.",
-        });
-      }
-    });
-  } else {
-    res.json({
-      msg: "Incorrect credentials.",
-    });
+app.get("/users", async (req, res) => {
+  try {
+    const usersList = await Users.find();
+
+    if (usersList) {
+      res.json({
+        usersList: usersList,
+      });
+      console.log(usersList);
+    }
+  } catch (e) {
+    console.log("Error:", e);
   }
 });
-//
-// });
-// jwt.sign(
-//   { phoneNumber: req.body.phoneNumber },
-//   secretKey,
-//   function (err, token) {
-//     res.json({
-//       msg: "Token generated!",
-//       token: token,
-//     });
-//   }
-// );
-
-const getUserData = async (req, res) => {
-  let usersData;
-  usersData = await Users.find();
-  // console.log(usersData);
-};
-
-getUserData();
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);

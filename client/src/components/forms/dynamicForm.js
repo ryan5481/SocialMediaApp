@@ -30,12 +30,12 @@ const DynamicForm = (props) => {
       body: JSON.stringify(values),
     };
     const res = await fetch(
-      `http://localhost:8000${props.apiEndpoint}`,
+      `http://localhost:9000${props.apiEndpoint}`,
       requestOptions
     );
     const data = await res.json();
     if (res.status == 200) {
-      dispatch(setAlertMessages(data.msg));
+      console.log(alert(data.msg));
     }
     navigate(props.onSuccessNavigate);
   };
