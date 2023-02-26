@@ -7,10 +7,16 @@ const NotificationCard = () => (
       width: "400px",
     }}
   >
-    <Alert message="Success Tips" type="success" showIcon />
+    <Alert
+      message="Success Tips"
+      type="success"
+      showIcon
+      closable="true"
+      closeText
+    />
     {/* <Alert message="Informational Notes" type="info" showIcon />
     <Alert message="Warning" type="warning" showIcon closable />
-    <Alert message="Error" type="error" showIcon /> */}
+    <Alert message="Error" type="error" showIcon />
     <Alert
       message="Success Tips"
       description="Detailed description and advice about successful copywriting."
@@ -35,7 +41,7 @@ const NotificationCard = () => (
       description="This is an error message about copywriting."
       type="error"
       showIcon
-    />
+    /> */}
   </Space>
 );
 export default NotificationCard;
