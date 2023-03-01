@@ -14,11 +14,12 @@ const LoginSchema = Yup.object().shape({
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const triggerLogin = async (values) => {
+  const handleLogin = async (values) => {
     const res = await axios.post(`http://localhost:9000/login`, values);
+    console.log(res.dbUserId);
     if (res.status == 200) {
       alert(res.data.msg);
-      dispatch(setLoginDetails());
+      dispatch(setLoginDetails({ dbUserId: res.data.dbUserId }));
       navigate("/messages");
     }
   };
@@ -31,7 +32,7 @@ const Login = () => {
         initialValues={{ loginInputText: "", password: "" }}
         validationSchema={LoginSchema}
         onSubmit={(values) => {
-          triggerLogin(values);
+          handleLogin(values);
         }}
       >
         {({ errors, touched }) => (

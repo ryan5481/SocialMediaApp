@@ -5,6 +5,7 @@ import Login from "../containers/Authentication/login";
 import SignUp from "../containers/Authentication/signup";
 import Profile from "../containers/05-profile";
 import ErrorPage from "../containers/09-404errorPage";
+import HighlightDiv from "../components/highlighter/highlightDiv";
 
 const ConditionalRoute = () => {
   const { isLoggedIn } = useSelector((state) => state.user);
@@ -24,6 +25,8 @@ const UserRoute = () => {
       <Route path="/messages" element={<Messages />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="*" element={<ErrorPage />} />
+      <Route path="/test" element={<HighlightDiv />} />
+      {/* The code on line above this line is for testing purpose, remove after testing */}
     </Routes>
   );
 };

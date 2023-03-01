@@ -1,27 +1,23 @@
-import { useState } from "react";
 import MessageCard from "../components/cards/messageCard";
 import { BsFillImageFill, BsFillEmojiSmileFill } from "react-icons/bs";
 import CustomNavbar from "../components/navigation components/navbar";
+import datetime from "../components/dateAndTime/getDateTime";
 import { IoIosSend } from "react-icons/io";
-import { useSelector } from "react-redux";
+import { useState } from "react";
 const Messages = () => {
-  const { dbUserId } = useSelector((state) => state.user);
-  const [message, setMessage] = useState("");
-
-  const handleChange = async (event) => {
+  const [message, setMessage] = useState("Hello");
+  const handleOnKeyUp = async (event) => {
     setMessage(event.target.value);
+    if (event.key === "Enter") {
+      setMessage("");
+      const requestOptions = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(event.target.value, datetime),
+      };
+      const res = await fetch(`http://localhost:9000/messages`, requestOptions);
+    }
   };
-
-  const handleOnClick = async () => {
-    setMessage("");
-    const requestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message, dbUserId }),
-    };
-    const res = await fetch(`http://localhost:9000/messages`, requestOptions);
-  };
-
   return (
     <>
       <CustomNavbar />
@@ -51,13 +47,13 @@ const Messages = () => {
                 <input
                   className="message-input-field"
                   placeholder="Type a message"
-                  onChange={handleChange}
+                  onKeyUp={handleOnKeyUp}
                   value={message}
                 ></input>
                 <IoIosSend
                   size={50}
                   className="send-icon"
-                  onClick={handleOnClick}
+                  // onClick={() => handleOnclick()}
                 />
               </div>
             </div>

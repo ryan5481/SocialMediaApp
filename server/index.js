@@ -38,33 +38,38 @@ const generateToken = async (key, value) => {
 };
 
 app.post("/login", async (req, res) => {
-  const loginInputField = GetInputTextType(req.body.loginInputText);
+  try {
+    const loginInputField = GetInputTextType(req.body.loginInputText);
 
-  const token = await generateToken(loginInputField, req.body.loginInputText);
+    const token = await generateToken(loginInputField, req.body.loginInputText);
 
-  const data = await Users.findOne({
-    [loginInputField]: req.body.loginInputText,
-  });
-
-  if (data) {
-    bcrypt.compare(req.body.password, data.password, function (err, result) {
-      console.log(result);
-      if (result) {
-        res.status(200).json({
-          msg: "Logged in successfully.",
-          token,
-        });
-      } else {
-        res.status(401).json({
-          msg: "Incorrect password.",
-        });
-      }
+    const data = await Users.findOne({
+      [loginInputField]: req.body.loginInputText,
     });
-    console.log(token);
-  } else {
-    res.status(403).json({
-      msg: "Incorrect credentials.",
-    });
+
+    if (data) {
+      bcrypt.compare(req.body.password, data.password, function(err, result) {
+        // console.log(data._id, result);
+        if (result) {
+          res.status(200).json({
+            msg: "Logged in successfully.",
+            token,
+            dbUserId: data._id,
+          });
+        } else {
+          res.status(401).json({
+            msg: "Incorrect password.",
+          });
+        }
+      });
+      // console.log(token);
+    } else {
+      res.status(403).json({
+        msg: "Incorrect credentials.",
+      });
+    }
+  } catch (e) {
+    console.log("error:", e);
   }
 });
 
@@ -82,7 +87,7 @@ const Users = mongoose.model("Users", userSchema);
 app.post("/signup", async (req, res) => {
   // console.log(req.body, req.query, req.params);
   try {
-    bcrypt.hash(req.body.password, saltRounds).then(async function (hash) {
+    bcrypt.hash(req.body.password, saltRounds).then(async function(hash) {
       req.body.password = hash;
       const data = await Users.create(req.body);
       if (data) {
@@ -96,15 +101,42 @@ app.post("/signup", async (req, res) => {
   }
 });
 
+// app.get("/users/:id", async (req, res) => {
+//   try {
+//     console.log(req.params.id);
+//   } catch (e) {
+//     console.log(e);
+//   }
+// });
+
+// receiveing messages
+const messagesSchema = new mongoose.Schema(
+  { dbUserId: String, message: String, members: Array },
+  { timeStamp: true }
+);
+
+const Messages = mongoose.model("Messages", messagesSchema);
+
+app.post("/messages", async (req, res) => {
+  try {
+    const data = await Messages.create(req.body);
+    if (data) {
+      res.status(200).json({ msgToDev: "Message received by the server." });
+      console.log(data);
+    }
+  } catch (e) {
+    console.log(e);
+  }
+});
+
+// sending usersList
 app.get("/users", async (req, res) => {
   try {
     const usersList = await Users.find();
-
     if (usersList) {
       res.json({
         usersList: usersList,
       });
-      console.log(usersList);
     }
   } catch (e) {
     console.log("Error:", e);
