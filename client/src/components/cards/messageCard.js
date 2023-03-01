@@ -1,33 +1,36 @@
 import { useState, useEffect } from "react";
-import CustomizedMenus from "./customStyledMenu";
+import CustomizedMenus from "../navigation components/customStyledMenu";
 
 const MessageCard = (props) => {
-  const dummyUsersData = [{ name: "Ryan", image: "" }];
-
   const [usersDataList, setUsersDataList] = useState([]);
-
+  const [highlightColor, setHighlightColor] = useState("");
   const fetchUsersData = async () => {
     const response = await fetch("http://localhost:9000/users");
-
     const data = await response.json();
-
+    console.log(data);
     if (data) {
       setUsersDataList(data.usersList);
     }
   };
 
-  console.log(usersDataList);
-
   useEffect(() => {
     fetchUsersData();
   }, []);
+
+  const handleClick = () => {
+    setHighlightColor("#0066cc");
+  };
 
   return (
     <>
       {usersDataList.map((item, id) => {
         return (
           <>
-            <div className="recentChat">
+            <div
+              className="recentChat"
+              style={{ backgroundColor: highlightColor }}
+              onClick={() => handleClick()}
+            >
               <div>
                 <img src={item.image}></img>
               </div>

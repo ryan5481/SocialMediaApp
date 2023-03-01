@@ -2,21 +2,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setLoginDetails } from "../redux/reducers/userSlice";
 import { MdSettings } from "react-icons/md";
-import CustomNavbar from "../components/navbar";
+import CustomNavbar from "../components/navigation components/navbar";
 
 import * as React from "react";
 
 const Profile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const loggedOut = () => {
+  const handleLogOut = () => {
     navigate("/login");
     dispatch(setLoginDetails());
   };
   return (
     <>
       <CustomNavbar />
-      <div className="profilePage mainPage">
+      <div className="profilePage main-page">
         <div className="profilePageContents profilePageDiv2">
           <div className="allProfileDetials profilePageDiv3">
             <div className="pfpDiv">
@@ -38,7 +38,7 @@ const Profile = () => {
               <div>
                 <button
                   className="button logoutButton"
-                  onClick={() => loggedOut()}
+                  onClick={() => handleLogOut()}
                 >
                   Log out
                 </button>

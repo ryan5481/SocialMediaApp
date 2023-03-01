@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const initialState = {
   isLoggedIn: false,
   token: "",
+  dbUserId: "",
 };
 
 //What is createSlice in Redux Toolkit?
@@ -14,6 +15,9 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     setLoginDetails: (state, actions) => {
+      if (actions.payload) {
+        state.dbUserId = actions.payload.dbUserId;
+      }
       state.isLoggedIn = !state.isLoggedIn;
     },
   },

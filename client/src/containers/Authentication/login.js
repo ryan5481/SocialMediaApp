@@ -1,77 +1,27 @@
-// import React from "react";
-// import { Formik, Form, Field } from "formik";
-// import * as Yup from "yup";
-// import { Link } from "react-router-dom";
-// import DynamicForm from "../../components/forms/dynamicForm";
-
-// const SignupSchema = Yup.object().shape({
-//   firstName: Yup.string()
-//     .min(2, "Too Short!")
-//     .max(50, "Too Long!")
-//     .required("Required"),
-//   lastName: Yup.string()
-//     .min(2, "Too Short!")
-//     .max(50, "Too Long!")
-//     .required("Required"),
-//   email: Yup.string().email("Invalid email").required("Required"),
-// });
-
-// const Login = () => {
-//   const loginDetialsFields = [
-//     {
-//       label: "Username, Phone Number or Email",
-//       value: "loginId",
-//       type: "text",
-//     },
-//     { label: "Password", value: "password", type: "password" },
-//   ];
-//   return (
-//     <div>
-//       <h1>Login</h1>
-//       <DynamicForm fields={loginDetialsFields} />
-//       <p>
-//         <Link to="">Forgot password</Link>
-//       </p>
-
-//       <p>
-//         <Link to="/signup">Signup</Link>
-//       </p>
-//     </div>
-//   );
-// };
-
-// export default Login;
-
-// => ABOVE CODE IS FOR DYNAMIC FORM
-
 import React from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { loginStatus } from "../../redux/reducers/userSlice";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { setLoginDetails } from "../../redux/reducers/userSlice";
 
-const SignupSchema = Yup.object().shape({
-  userId: Yup.string().required("Required"),
+const LoginSchema = Yup.object().shape({
+  loginInputText: Yup.string().required("Required"),
   password: Yup.string().required("Required"),
 });
 const Login = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const loginStatus = () => {
-    dispatch(setLoginDetails(true));
-  };
-
-  const triggerLogin = async (values) => {
-    const res = axios.post(`http://localhost/8000/login`, values);
-    console.log(res);
+  const dispatch = useDispatch();
+  const handleLogin = async (values) => {
+    const res = await axios.post(`http://localhost:9000/login`, values);
+    console.log(res.dbUserId);
     if (res.status == 200) {
-      dispatch(setLoginDetails(res.data.token));
+      alert(res.data.msg);
+      dispatch(setLoginDetails({ dbUserId: res.data.dbUserId }));
+      navigate("/messages");
     }
-    navigate("/messages");
   };
 
   return (
@@ -79,21 +29,22 @@ const Login = () => {
       <h1 className="logo">Social</h1>
       <h2 className="titleLabel">Login</h2>
       <Formik
-        initialValues={{}}
+        initialValues={{ loginInputText: "", password: "" }}
+        validationSchema={LoginSchema}
         onSubmit={(values) => {
-          triggerLogin(values);
+          handleLogin(values);
         }}
       >
         {({ errors, touched }) => (
           <Form className="loginFields">
             <Field
-              name="phoneNumber"
-              id="phoneNumber"
-              className="loginIdField loginElement textField"
+              name="loginInputText"
+              id="loginInputText"
+              className="loginInputText-Field loginElement textField"
               placeholder="Username, Email or Phone Number"
             />
-            {errors.userId && touched.userId ? (
-              <div>{errors.userId}</div>
+            {errors.loginInputText && touched.loginInputText ? (
+              <div>{errors.loginInputText}</div>
             ) : null}
             <Field
               name="password"
