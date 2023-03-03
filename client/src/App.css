@@ -1,10 +1,10 @@
 body {
-  background-color: rgb(30, 30, 30);
+  /* background-color: rgb(30, 30, 30); */
+  background-color: rgb(60, 60, 60);
 }
-
-.main-page {
-  position: relative;
-  bottom: 100vh;
+.full-page {
+  display: grid;
+  grid-template-columns: 200px 500px;
 }
 
 .button {
@@ -28,7 +28,7 @@ body {
   text-align: center;
   background-color: black;
   width: 200px;
-  bottom: -50px;
+  margin: 0px 20px 0px 0px;
   color: white;
 }
 
@@ -41,9 +41,9 @@ body {
   gap: 50px;
 }
 
-.navBarItem :hover {
+/* .navBarItem :hover {
   background-color: rgb(15, 15, 15);
-}
+} */
 
 .navBarItem {
   display: grid;
@@ -84,14 +84,12 @@ body {
 /* PROFILE PAGE*/
 /* PROFILE PAGE*/
 /* PROFILE PAGE*/
-.profilePage {
-}
 
 .profilePageContents {
   color: white;
   position: relative;
   left: 300px;
-  width: 1200px;
+  width: 600px;
   height: 90vh;
   margin: 40px 20px 40px 0px;
   border-radius: 5px;
@@ -277,9 +275,9 @@ body {
 /* MESSAGES PAGE*/
 /* MESSAGES PAGE*/
 
-.main-pageContents {
+.main-page {
   position: relative;
-  left: 100px;
+  left: 350px;
   color: white;
   display: flex;
   place-content: center;
@@ -290,8 +288,7 @@ body {
   margin: 40px 20px 40px 0px;
 }
 
-.messagesPageBoxContents {
-  width: 1200px;
+.Page-Box-Contents {
   display: grid;
   height: 90vh;
   grid-template-columns: 1fr 3fr;
@@ -299,21 +296,21 @@ body {
   border-radius: 5px;
 }
 
-.messagesListColumn {
+.messages-List-Column {
   border-right: 0.5px solid white;
   width: 400px;
 }
 
-.messagesListColumnHeader {
+.messages-List-ColumnHeader {
   height: 50px;
 }
 
-.messagesListDiv {
-  height: 930px;
+.messages-List-Div {
+  height: 670px;
   overflow: auto;
 }
 
-.messagesListColumnHeader {
+.messages-List-ColumnHeader {
   padding: 0px 30px 0px 40px;
   align-items: center;
   text-align: center;
@@ -321,11 +318,12 @@ body {
   border-bottom: 1px solid white;
 }
 
-.chatBox {
+.chat-Box {
   display: grid;
+  width: 750px;
 }
 
-.chatBoxHeader {
+.chat-Box-Header {
   padding: 0px 30px 0px 30px;
   display: flex;
   border-bottom: 1px solid white;
@@ -334,16 +332,15 @@ body {
   height: 69px;
 }
 
-.chatBoxBody {
-  height: 840px;
+.chat-box-body {
+  height: 520px;
   vertical-align: middle;
   overflow: scroll;
 }
 
-.chatBoxFooter {
+.chat-BoxFooter {
   vertical-align: middle;
   margin: 10px 10px 10px 10px;
-  /* border-top: 1px solid white; */
   display: flex;
   place-content: center;
   align-items: center;
@@ -398,7 +395,7 @@ body {
 }
 
 .recentChat:hover {
-  background-color: rgb(15, 15, 15);
+  background-color: rgb(30, 30, 30);
 }
 
 .recentChat img {
@@ -432,8 +429,9 @@ body {
 }
 
 .e :hover {
-  background-color: #ff0000;
+  background-color: gray;
 }
+
 /* NOTIFICATION */
 /* NOTIFICATION */
 /* NOTIFICATION */

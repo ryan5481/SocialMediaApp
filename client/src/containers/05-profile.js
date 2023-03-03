@@ -14,11 +14,11 @@ const Profile = () => {
     dispatch(setLoginDetails());
   };
   return (
-    <>
+    <div className="full-page">
       <CustomNavbar />
-      <div className="profilePage main-page">
-        <div className="profilePageContents profilePageDiv2">
-          <div className="allProfileDetials profilePageDiv3">
+      <div className="main-page">
+        <div className="Page-Box-Contents">
+          <div className="profilePageContents ">
             <div className="pfpDiv">
               <img
                 className="pfp"
@@ -43,12 +43,7 @@ const Profile = () => {
                   Log out
                 </button>
               </div>
-              {/* <MdSettings
-              className=" settingsButton"
-              size={30}
-              onClick={() => navigate("/settings")}
-            /> */}
-              <div></div>
+              /<div></div>
               <div className="userStats">
                 <div>posts</div>
                 <div>followers</div>
@@ -66,7 +61,7 @@ const Profile = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

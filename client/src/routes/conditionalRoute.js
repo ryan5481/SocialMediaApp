@@ -22,7 +22,7 @@ const UserRoute = () => {
       <Route path="/" element={<Messages />} />
       <Route path="/login" element={<Messages />} />
       <Route path="/signup" element={<Messages />} />
-      <Route path="/messages" element={<Messages />} />
+      <Route path="messages" element={<Messages />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="*" element={<ErrorPage />} />
       <Route path="/test" element={<HighlightDiv />} />

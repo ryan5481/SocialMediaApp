@@ -1,3 +1,5 @@
+import React from "react";
+
 import { useState, useEffect } from "react";
 import CustomizedMenus from "../navigation components/customStyledMenu";
 
@@ -18,7 +20,7 @@ const MessageCard = (props) => {
   }, []);
 
   const handleClick = () => {
-    setHighlightColor("#0066cc");
+    setHighlightColor("");
   };
 
   return (

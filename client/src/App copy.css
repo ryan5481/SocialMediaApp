@@ -247,7 +247,7 @@ body {
   height: 100vh;
 }
 
-.messagesPageBoxContents {
+.messages-Page-Box-Contents {
   margin-color: white;
   width: 1220px;
   display: grid;
@@ -257,13 +257,13 @@ body {
   border-radius: 20px;
 }
 
-.messagesListColumn {
+.messages-List-Column {
   border-right: 4px solid rgb(45, 45, 45);
 }
-.chatBox {
+.chat-Box {
 }
 
-.messagesListColumnHead {
+.messages-List-ColumnHead {
   padding: 0px 30px 0px 40px;
   display: flex;
   align-items: center;
@@ -271,7 +271,7 @@ body {
   height: 70px;
   border-bottom: 4px solid rgb(45, 45, 45);
 }
-.chatBoxHead {
+.chat-BoxHead {
   padding: 0px 30px 0px 30px;
   display: flex;
   align-items: center;
@@ -280,7 +280,7 @@ body {
   border-bottom: 4px solid rgb(45, 45, 45);
 }
 
-.chatBoxBody {
+.chat-box-body {
   height: 730px;
   vertical-align: middle;
 }

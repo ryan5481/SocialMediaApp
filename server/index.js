@@ -112,7 +112,7 @@ app.post("/signup", async (req, res) => {
 // receiveing messages
 const messagesSchema = new mongoose.Schema(
   { dbUserId: String, message: String, members: Array },
-  { timeStamp: true }
+  { timeStamps: true }
 );
 
 const Messages = mongoose.model("Messages", messagesSchema);
