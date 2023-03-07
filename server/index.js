@@ -3,6 +3,10 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 const app = express();
+const http = require("http");
+const server = http.createServer(app);
+const { Server } = require("socket.io");
+const io = new Server(server);
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
@@ -27,6 +31,10 @@ const connectDb = async () => {
 };
 
 connectDb();
+
+io.on("connection", (socket) => {
+  console.log("a user connected");
+});
 
 const generateToken = async (key, value) => {
   try {

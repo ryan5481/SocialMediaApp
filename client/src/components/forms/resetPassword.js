@@ -11,7 +11,7 @@ const LoginSchema = Yup.object().shape({
   loginInputText: Yup.string().required("Required"),
   password: Yup.string().required("Required"),
 });
-const Login = () => {
+const ResetPassword = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleLogin = async (values) => {
@@ -29,7 +29,8 @@ const Login = () => {
     <>
       <div className="form">
         <h1 className="logo">Social</h1>
-        <h2 className="titleLabel">Login</h2>
+        <h3 className="titleLabel">Trouble logging in?</h3>
+        <p>We'll send you a link to get back into your account.</p>
         <Formik
           initialValues={{ loginInputText: "", password: "" }}
           validationSchema={LoginSchema}
@@ -45,34 +46,20 @@ const Login = () => {
                 className="loginInputText-Field loginElement textField"
                 placeholder="Username, Email or Phone Number"
               />
-              {errors.loginInputText && touched.loginInputText ? (
-                <div>{errors.loginInputText}</div>
-              ) : null}
-              <Field
-                name="password"
-                id="password"
-                className="passwordField loginElement textField"
-                placeholder="Password"
-              />
-              {errors.password && touched.password ? (
-                <div>{errors.password}</div>
-              ) : null}
 
-              <button className="button loginElement loginButton" type="submit">
-                Login
+              <button className="reset-button button" type="submit">
+                Send login link
               </button>
             </Form>
           )}
         </Formik>
-        <div className="linksSpace">
-          <p>
-            <Link className="link" to="/resetpassword">
-              Forgot password
-            </Link>
-          </p>
+        <div className="form-footer">
+          <div style={{ position: "relative", top: "10px" }}>
+            ⎯⎯⎯⎯⎯⎯⎯⎯⎯ or ⎯⎯⎯⎯⎯⎯⎯⎯⎯
+          </div>
           <p>
             <Link className="link" to="/signup">
-              SignUp
+              Create a new account
             </Link>
           </p>
         </div>
@@ -81,4 +68,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default ResetPassword;

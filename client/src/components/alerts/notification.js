@@ -1,47 +1,30 @@
-import { Alert, Space } from "antd";
-const NotificationCard = () => (
-  <Space
-    className="notification-card"
-    direction="vertical"
-    style={{
-      width: "400px",
-    }}
-  >
-    <Alert
-      message="Success Tips"
-      type="success"
-      showIcon
-      closable="true"
-      closeText
-    />
-    {/* <Alert message="Informational Notes" type="info" showIcon />
-    <Alert message="Warning" type="warning" showIcon closable />
-    <Alert message="Error" type="error" showIcon />
-    <Alert
-      message="Success Tips"
-      description="Detailed description and advice about successful copywriting."
-      type="success"
-      showIcon
-    />
-    <Alert
-      message="Informational Notes"
-      description="Additional description and information about copywriting."
-      type="info"
-      showIcon
-    />
-    <Alert
-      message="Warning"
-      description="This is a warning notice about copywriting."
-      type="warning"
-      showIcon
-      closable
-    />
-    <Alert
-      message="Error"
-      description="This is an error message about copywriting."
-      type="error"
-      showIcon
-    /> */}
-  </Space>
-);
+import { useDispatch, useSelector } from "react-redux";
+import { resetAlertMessages } from "../../redux/reducers/notificationSlice";
+import { notification } from "antd";
+import { useEffect } from "react";
+
+const NotificationCard = () => {
+  const dispatch = useDispatch();
+  const { apiSuccessMessage, isApiSuccessMsgOpen } = useSelector(
+    (state) => state.notification
+  );
+  const [api, contextHolder] = notification.useNotification();
+  const openNotification = (placement) => {
+    api.info({
+      message: apiSuccessMessage,
+      // description: " "
+      placement,
+    });
+  };
+  useEffect(() => {
+    if (isApiSuccessMsgOpen) {
+      openNotification();
+      setTimeout(() => {
+        dispatch(resetAlertMessages);
+      }, 5000);
+    }
+  }, [isApiSuccessMsgOpen]);
+
+  return <>{contextHolder}</>;
+};
 export default NotificationCard;

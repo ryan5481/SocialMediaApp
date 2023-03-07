@@ -6,6 +6,8 @@ import SignUp from "../containers/Authentication/signup";
 import Profile from "../containers/05-profile";
 import ErrorPage from "../containers/09-404errorPage";
 import HighlightDiv from "../components/highlighter/highlightDiv";
+import ResetPassword from "../components/forms/resetPassword";
+import Home from "../containers/01-home";
 
 const ConditionalRoute = () => {
   const { isLoggedIn } = useSelector((state) => state.user);
@@ -22,6 +24,8 @@ const UserRoute = () => {
       <Route path="/" element={<Messages />} />
       <Route path="/login" element={<Messages />} />
       <Route path="/signup" element={<Messages />} />
+      <Route path="/resetpassword" element={<ResetPassword />} />
+      <Route path="/home" element={<Home />} />
       <Route path="messages" element={<Messages />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="*" element={<ErrorPage />} />
@@ -39,7 +43,9 @@ const NonUserRoute = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/messages" element={<Login />} />
         <Route path="/profile" element={<Login />} />
+        <Route path="/home" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/resetpassword" element={<ResetPassword />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </div>

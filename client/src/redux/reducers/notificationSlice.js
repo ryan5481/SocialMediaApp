@@ -13,13 +13,15 @@ const notificationSlice = createSlice({
       state.apiSuccessMessage = actions.payload;
       state.isApiSuccessMsgOpen = true;
     },
-    resetAlertMessages: (state, actions) => {
-      state.apiSuccessMessage = "";
-      state.isApiSuccessMsgOpen = false;
-    },
+  },
+  resetAlertMessages: (state, actions) => {
+    state.apiSuccessMessage = "actions.payload";
+    state.isApiSuccessMsgOpen = false;
   },
 });
 
-export const { setAlertMessages, resetAlertMessages } =
-  notificationSlice.actions;
+export const {
+  setAlertMessages,
+  resetAlertMessages,
+} = notificationSlice.actions;
 export default notificationSlice.reducer;

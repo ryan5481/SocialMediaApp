@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setLoginDetails } from "../redux/reducers/userSlice";
-import { MdSettings } from "react-icons/md";
 import CustomNavbar from "../components/navigation components/navbar";
 
 import * as React from "react";
@@ -10,8 +9,8 @@ const Profile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleLogOut = () => {
-    navigate("/login");
     dispatch(setLoginDetails());
+    navigate("/login");
   };
   return (
     <div className="full-page">

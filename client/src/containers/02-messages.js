@@ -4,6 +4,7 @@ import CustomNavbar from "../components/navigation components/navbar";
 import { BsFillImageFill, BsFillEmojiSmileFill } from "react-icons/bs";
 import { IoIosSend } from "react-icons/io";
 import { useSelector } from "react-redux";
+
 const Messages = () => {
   const { dbUserId } = useSelector((state) => state.user);
   const [message, setMessage] = useState("");
