@@ -21,7 +21,7 @@ const ConditionalRoute = () => {
 const UserRoute = () => {
   return (
     <Routes>
-      <Route path="/" element={<Messages />} />
+      <Route path="/" element={<Home />} />
       <Route path="/login" element={<Messages />} />
       <Route path="/signup" element={<Messages />} />
       <Route path="/resetpassword" element={<ResetPassword />} />

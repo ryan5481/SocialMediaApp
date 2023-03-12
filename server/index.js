@@ -11,6 +11,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const GetInputTextType = require("./utils/getInputTextType");
+const multer = require("multer");
 require("dotenv").config();
 
 const PRIVATE_KEY = process.env.JWT_PRIVATE_KEY;
@@ -19,6 +20,7 @@ app.use(cors());
 app.use(express.json());
 const port = 9000;
 
+// CONNECT TO DATABASE
 const connectDb = async () => {
   try {
     const data = await mongoose.connect(
@@ -32,10 +34,7 @@ const connectDb = async () => {
 
 connectDb();
 
-io.on("connection", (socket) => {
-  console.log("a user connected");
-});
-
+// //LOGIN
 const generateToken = async (key, value) => {
   try {
     const token = await jwt.sign({ [key]: value }, PRIVATE_KEY);
@@ -56,13 +55,15 @@ app.post("/login", async (req, res) => {
     });
 
     if (data) {
+      console.log(data);
       bcrypt.compare(req.body.password, data.password, function(err, result) {
-        // console.log(data._id, result);
         if (result) {
           res.status(200).json({
             msg: "Logged in successfully.",
             token,
             dbUserId: data._id,
+            userName: data.userName,
+            fullName: data.fullName,
           });
         } else {
           res.status(401).json({
@@ -81,18 +82,40 @@ app.post("/login", async (req, res) => {
   }
 });
 
-const userSchema = new Schema({
-  fullname: { type: String },
-  userName: { type: String },
-  email: { type: String },
-  phoneNumber: { type: Number },
-  password: { type: String },
-  confirmApssword: { type: String },
-});
+//SIGN UP
+const userSchema = new Schema(
+  {
+    fullName: { type: String, require: true },
+    userName: { type: String, require: true },
+    email: { type: String, require: true },
+    phoneNumber: { type: Number, require: true },
+    password: { type: String, require: true },
+    confirmPassword: { type: String, require: true },
+    pfpImgName: { type: String },
+  },
+  { timestamps: true }
+);
 
 const Users = mongoose.model("Users", userSchema);
 
-app.post("/signup", async (req, res) => {
+// PFP upload
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, "../client/src/uploads");
+  },
+  filename: function(req, file, cb) {
+    // console.log(file);
+    // console.log(req.body.userName);
+    cb(
+      null,
+      "userName_" + req.body.userName + "." + file.mimetype.split("/")[1]
+    );
+  },
+});
+
+const upload = multer({ storage: storage });
+
+app.post("/signup", upload.single("pfpImgName"), async (req, res, next) => {
   // console.log(req.body, req.query, req.params);
   try {
     bcrypt.hash(req.body.password, saltRounds).then(async function(hash) {
@@ -109,18 +132,10 @@ app.post("/signup", async (req, res) => {
   }
 });
 
-// app.get("/users/:id", async (req, res) => {
-//   try {
-//     console.log(req.params.id);
-//   } catch (e) {
-//     console.log(e);
-//   }
-// });
-
-// receiveing messages
+// RECEIVE MESSAGES FROM THE FRONTEND
 const messagesSchema = new mongoose.Schema(
   { dbUserId: String, message: String, members: Array },
-  { timeStamps: true }
+  { timestamps: true }
 );
 
 const Messages = mongoose.model("Messages", messagesSchema);
@@ -129,15 +144,55 @@ app.post("/messages", async (req, res) => {
   try {
     const data = await Messages.create(req.body);
     if (data) {
+      //console.log(data);
       res.status(200).json({ msgToDev: "Message received by the server." });
-      console.log(data);
     }
   } catch (e) {
     console.log(e);
   }
 });
 
-// sending usersList
+//RECEIVE USER'S POSTS FROM THE FRONTEND AND STORE IN THE DB
+
+const feedSchema = new mongoose.Schema(
+  {
+    dbUserId: String,
+    userName: String,
+    fullName: String,
+    inputPostText: String,
+    members: Array,
+  },
+  { timestamps: true }
+);
+
+const Feed = mongoose.model("Feed", feedSchema);
+
+app.post("/makeapost", async (req, res) => {
+  try {
+    const data = await Feed.create(req.body);
+    // console.log(req.body);
+    if (data) {
+      res.status(200).json({ msgToDev: "User's post received by the server." });
+    }
+  } catch (e) {
+    console.log(e);
+  }
+});
+
+// SEND ALL USER'S POSTS LIST TO THE HOME PAGE
+app.get("/feed", async (req, res) => {
+  try {
+    const allUsersPosts = await Feed.find();
+    console.log(allUsersPosts);
+    if (allUsersPosts) {
+      res.json({ allUsersPosts: allUsersPosts });
+    }
+  } catch (e) {
+    console.log(e);
+  }
+});
+
+// SEND USERS LIST TO MESSAGES PAGE
 app.get("/users", async (req, res) => {
   try {
     const usersList = await Users.find();
@@ -150,6 +205,14 @@ app.get("/users", async (req, res) => {
     console.log("Error:", e);
   }
 });
+
+// app.get("/users/:id", async (req, res) => {
+//   try {
+//     console.log(req.params.id);
+//   } catch (e) {
+//     console.log(e);
+//   }
+// });
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);

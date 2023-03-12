@@ -1,16 +1,21 @@
 import React from "react";
 
 import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import CustomizedMenus from "../navigation components/customStyledMenu";
-
+import { setUserDetails } from "../../redux/reducers/userSlice";
+import { all } from "axios";
+// // const usersDetailsObject = JSON.stringify(data.usersList);
 const MessageCard = (props) => {
+  const dispatch = useDispatch();
   const [usersDataList, setUsersDataList] = useState([]);
-  const [highlightColor, setHighlightColor] = useState("");
+
   const fetchUsersData = async () => {
-    const response = await fetch("http://localhost:9000/users");
-    const data = await response.json();
-    console.log(data);
-    if (data) {
+    const res = await fetch("http://localhost:9000/users");
+    const data = await res.json();
+    const allUsers = JSON.stringify(data);
+    alert(allUsers);
+    if (res) {
       setUsersDataList(data.usersList);
     }
   };
@@ -19,10 +24,6 @@ const MessageCard = (props) => {
     fetchUsersData();
   }, []);
 
-  const handleClick = () => {
-    setHighlightColor("");
-  };
-
   return (
     <>
       {usersDataList.map((item, id) => {
@@ -30,8 +31,7 @@ const MessageCard = (props) => {
           <>
             <div
               className="recentChat"
-              style={{ backgroundColor: highlightColor }}
-              onClick={() => handleClick()}
+              onClick={() => dispatch(setUserDetails(""))}
             >
               <div>
                 <img src={item.image}></img>

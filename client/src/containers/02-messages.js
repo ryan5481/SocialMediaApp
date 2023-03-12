@@ -3,11 +3,12 @@ import MessageCard from "../components/cards/messageCard";
 import CustomNavbar from "../components/navigation components/navbar";
 import { BsFillImageFill, BsFillEmojiSmileFill } from "react-icons/bs";
 import { IoIosSend } from "react-icons/io";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const Messages = () => {
-  const { dbUserId } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
   const [message, setMessage] = useState("");
+  const { dbUserId, userDetails } = useSelector((state) => state.user);
 
   const handleChange = async (event) => {
     setMessage(event.target.value);
@@ -15,6 +16,7 @@ const Messages = () => {
 
   const handleOnClick = async () => {
     setMessage("");
+
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },

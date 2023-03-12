@@ -15,7 +15,9 @@ const SignupSchema = Yup.object().shape({
     .min(2, "Too Short!")
     .max(50, "Too Long!")
     .required("Required"),
-  email: Yup.string().email("Invalid email").required("Required"),
+  email: Yup.string()
+    .email("Invalid email")
+    .required("Required"),
 });
 
 const DynamicForm = (props) => {
@@ -51,24 +53,6 @@ const DynamicForm = (props) => {
           <h1>Social</h1>
           <h2>SignUp</h2>
           <Form>
-            {props.fields.map((item, id) => {
-              return (
-                <div className="loginFields signUpElement">
-                  <Field
-                    name={item.label}
-                    type={item.type}
-                    placeholder={item.placeholder || item.label}
-                    className="input"
-                  />
-                  {errors[item.label] && touched[item.label] ? (
-                    <div>{errors[item.label]}</div>
-                  ) : null}
-                </div>
-              );
-            })}
-            <button type="submit" className="button loginElement signupButton">
-              SignUp
-            </button>
             <div className="linkSpace"></div>
             <p className="link">
               Already have an account?{" "}

@@ -4,12 +4,11 @@ export const initialState = {
   isLoggedIn: false,
   token: "",
   dbUserId: "",
+  userName: "",
+  fullName: "",
+  selectedUserDetails: {},
 };
 
-//What is createSlice in Redux Toolkit?
-//createSlice is a higher order function that accepts an initial state, an object full of reducer functions and a slice name.
-
-// In Redux-Toolkit, the createSlice method helps us create a slice of the redux-store.
 const userSlice = createSlice({
   name: "user",
   initialState,
@@ -17,11 +16,16 @@ const userSlice = createSlice({
     setLoginDetails: (state, actions) => {
       if (actions.payload) {
         state.dbUserId = actions.payload.dbUserId;
+        state.userName = actions.payload.userName;
+        state.fullName = actions.payload.fullName;
       }
       state.isLoggedIn = !state.isLoggedIn;
+    },
+    setUserDetails: (state, actions) => {
+      state.selectedUserDetails = actions.payload;
     },
   },
 });
 
-export const { setLoginDetails } = userSlice.actions;
+export const { setLoginDetails, setUserDetails } = userSlice.actions;
 export default userSlice.reducer;
