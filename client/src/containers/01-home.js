@@ -27,7 +27,7 @@ const Home = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ dbUserId, userName, fullName, inputPostText }),
     };
-    const res = await fetch(`http://localhost:9000/makeapost`, requestOptions);
+    const res = await fetch(`http://localhost:9000/feed`, requestOptions);
   };
 
   //Retrieve posts from all the users and display on the home page
@@ -72,7 +72,7 @@ const Home = () => {
               <div className="home-card-footer">
                 <div className="home-card-icons">
                   <BsFillEmojiSmileFill className="emojiButton" size={20} />
-                  <BsFillImageFill className="uploadImgIcon" size={20} />
+                  <input type="file" className="uploadImgIcon" size={20} />
                 </div>
                 <button className="button" onClick={handleOnClick}>
                   Post
