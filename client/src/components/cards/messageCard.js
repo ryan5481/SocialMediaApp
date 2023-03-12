@@ -34,7 +34,10 @@ const MessageCard = (props) => {
               onClick={() => dispatch(setUserDetails(""))}
             >
               <div>
-                <img src={item.image}></img>
+                <img
+                  src={require("../../uploads/profilePictures/" +
+                    item.pfpImgName)}
+                ></img>
               </div>
               <div className="recentChatRHS">
                 <div className="recentChatRhsTop">

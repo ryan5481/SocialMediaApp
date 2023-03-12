@@ -33,42 +33,46 @@ const SignUp = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const submitFormData = async (values) => {
-    console.log(values);
-    const requestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(values),
-    };
-    const res = await fetch(`http://localhost:9000/signup`, requestOptions);
-    const data = await res.json();
-    if (res.status == 200) {
-      console.log(alert(data.msg));
-    }
-    navigate("/login");
-  };
+  // const submitFormData = async (values) => {
+  //   console.log(values);
+  //   const requestOptions = {
+  //     method: " ",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify(values),
+  //   };
+  //   const res = await fetch(`http://localhost:9000/signup`, requestOptions);
+  //   const data = await res.json();
+  //   if (res.status == 200) {
+  //     console.log(alert(data.msg));
+  //   }
+  //   navigate("/login");
+  // };
   return (
     <>
       <Formik
         initialValues={{}}
         // validationSchema={SignupSchema}
         onSubmit={(values) => {
-          submitFormData(values);
+          // const valuesWithPfpImg = {...values, }
           const bodyFormData = new FormData();
-          bodyFormData.append("pfpImgName", pfpImage);
+
           Object.keys(values).map((item) => {
             bodyFormData.append(item, values[item]);
           });
-
+          bodyFormData.append("pfpImgName", pfpImage);
           axios({
             method: "post",
-            url: "signup",
+            url: "http://localhost:9000/signup",
             data: bodyFormData,
             headers: { "Content-Type": "multipart/form-data" },
           })
             .then(function(response) {
-              //handle success
-              console.log(response);
+              if (response.status == 200) {
+                alert(response.data.msg);
+                navigate("/login");
+              } else {
+                alert(response.data.msg);
+              }
             })
             .catch(function(response) {
               //handle error
@@ -82,13 +86,16 @@ const SignUp = () => {
             <h2>SignUp</h2>
             <Form>
               <div className="">
-                <Field
-                  name="pfpImgName"
-                  type="file"
-                  placeholder="Profile picture"
-                  className="loginInputText-Field loginElement textField"
-                  onChange={(e) => setPfpImage(e.target.files[0])}
-                />
+                <div className="pfp-input">
+                  {" "}
+                  Choose a profile picture
+                  <Field
+                    name="pfpImgName"
+                    type="file"
+                    placeholder="Profile picture"
+                    onChange={(e) => setPfpImage(e.target.files[0])}
+                  />
+                </div>
                 <Field
                   name="fullName"
                   type="text"

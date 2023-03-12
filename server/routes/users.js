@@ -6,6 +6,9 @@ const { Schema } = mongoose;
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
+const PRIVATE_KEY = process.env.JWT_PRIVATE_KEY;
+require("dotenv").config();
+
 const GetInputTextType = require("../utils/getInputTextType");
 const multer = require("multer");
 
@@ -76,14 +79,14 @@ const Users = mongoose.model("Users", userSchema);
 // pfp upload
 const storage = multer.diskStorage({
   destination: function(req, file, cb) {
-    cb(null, "../client/src/uploads");
+    cb(null, "../client/src/uploads/profilePictures");
   },
   filename: function(req, file, cb) {
-    console.log(file);
+    // console.log(file);
     console.log(req.body.userName);
     cb(
       null,
-      "userName_" + req.body.userName + "." + file.mimetype.split("/")[1]
+      "pfp_userName_" + req.body.userName + "." + file.mimetype.split("/")[1]
     );
   },
 });
@@ -91,11 +94,13 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 router.post("/signup", upload.single("pfpImgName"), async (req, res, next) => {
-  // console.log(req.body, req.query, req.params);
+  //   console.log(req.file.filename);
   try {
     bcrypt.hash(req.body.password, saltRounds).then(async function(hash) {
       req.body.password = hash;
-      const data = await Users.create(req.body);
+
+      const reqWithPfpImg = { ...req.body, pfpImgName: req.file.filename };
+      const data = await Users.create(reqWithPfpImg);
       if (data) {
         res.json({ msg: "Signup successful!" });
       } else {
