@@ -78,6 +78,46 @@ body {
   border-radius: 50%;
 }
 
+.create-popup-card {
+  background-color: rgb(30 30 30);
+  display: grid;
+  grid-template-columns: 50px 590px;
+}
+.create-popup-card img {
+  padding: 10px;
+}
+.create-popup-card textarea {
+  font-family: Verdana, Helvetica, sans-serif;
+  font-size: 16px;
+  margin: 10px 10px 20px 10px;
+  width: 520px;
+  height: 300px;
+  color: white;
+  height: 100px;
+  border-radius: 5px;
+  background-color: black;
+}
+.create-popup-card img {
+  padding: 10px;
+}
+.create-popup-card img {
+  padding: 10px;
+}
+
+.create-popup-card-contents {
+  display: grid;
+  grid-template-rows: 50px 590px;
+}
+.create-popup-card button {
+  width: 70px;
+  height: 30px;
+  padding: 5px;
+  border-radius: 25px;
+  position: relative;
+  left: 270px;
+  bottom: 7px;
+}
+
 /* PROFILE PAGE*/
 /* PROFILE PAGE*/
 /* PROFILE PAGE*/
@@ -271,6 +311,16 @@ body {
 }
 
 .pfp-input {
+  width: 330px;
+  border-radius: 10px;
+  position: relative;
+  background-color: white;
+  left: 33px;
+  color: grey;
+  display: grid;
+  place-content: center;
+  align-items: center;
+  text-align: left;
 }
 
 /* MESSAGES PAGE*/

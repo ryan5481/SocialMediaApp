@@ -42,6 +42,7 @@ router.post("/login", async (req, res) => {
             dbUserId: data._id,
             userName: data.userName,
             fullName: data.fullName,
+            pfpImgName: data.pfpImgName,
           });
         } else {
           res.status(401).json({

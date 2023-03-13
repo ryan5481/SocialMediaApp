@@ -86,8 +86,7 @@ const SignUp = () => {
             <h2>SignUp</h2>
             <Form>
               <div className="">
-                <div className="pfp-input">
-                  {" "}
+                <div className="pfp-input loginElement">
                   Choose a profile picture
                   <Field
                     name="pfpImgName"

@@ -1,16 +1,17 @@
-import * as React from "react";
+import React, { useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 import { BsFillChatFill } from "react-icons/bs";
 import { AiFillHome } from "react-icons/ai";
 import { SiAddthis } from "react-icons/si";
-import PostCard from "../cards/postCard";
+import CreatePopupCard from "../cards/CreatePopupCard";
 
 const CustomNavbar = () => {
   const navigate = useNavigate();
-  const handleClick = () => {
-    console.log("+ button clicked!");
-    PostCard();
+  const [confirmCreatePopup, setConfirmCreatePopup] = useState(false);
+
+  const handleClosePopup = () => {
+    setConfirmCreatePopup(false);
   };
 
   return (
@@ -52,11 +53,15 @@ const CustomNavbar = () => {
           <SiAddthis
             className="navBarIcon messagesButton"
             size={30}
-            onClick={(e) => handleClick()}
+            onClick={() => setConfirmCreatePopup(true)}
           />
           <p>Message</p>
         </div>
       </div>
+      <CreatePopupCard
+        handleClosePopup={handleClosePopup}
+        confirmCreatePopup={confirmCreatePopup}
+      />
     </div>
   );
 };

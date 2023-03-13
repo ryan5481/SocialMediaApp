@@ -13,7 +13,9 @@ import { useSelector } from "react-redux";
 const Home = () => {
   const [inputPostText, setInputPostText] = useState("");
   const [allUsersPostsList, setAllUsersPostsList] = useState([]);
-  const { dbUserId, userName, fullName } = useSelector((state) => state.user);
+  const { dbUserId, userName, fullName, pfpImgName } = useSelector(
+    (state) => state.user
+  );
 
   // Make posts from the homepage
   const handleChange = async (event) => {
@@ -25,7 +27,13 @@ const Home = () => {
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ dbUserId, userName, fullName, inputPostText }),
+      body: JSON.stringify({
+        dbUserId,
+        userName,
+        fullName,
+        inputPostText,
+        pfpImgName,
+      }),
     };
     const res = await fetch(`http://localhost:9000/feed`, requestOptions);
   };
@@ -55,9 +63,7 @@ const Home = () => {
           <h2 style={{ textAlign: "center" }}>Home</h2>
           <div className="home-card">
             <img
-              src={
-                "https://tse2.mm.bing.net/th?id=OIP.9B2RxsHDB_s7FZT0mljnhQHaHa"
-              }
+              src={require("../../src/uploads/profilePictures/" + pfpImgName)}
               alt="Avatar"
               className="profileButton"
               size={40}
@@ -89,9 +95,9 @@ const Home = () => {
                   <div className="feed-card">
                     <div className="feed-card-header">
                       <img
-                        src={
-                          "https://tse2.mm.bing.net/th?id=OIP.9B2RxsHDB_s7FZT0mljnhQHaHa"
-                        }
+                        src={""}
+                        // src={require("../../src/uploads/profilePictures/" +
+                        //   item.pfpImgName)}
                         alt="Avatar"
                         className="profileButton"
                         size={40}

@@ -16,17 +16,18 @@ const Login = () => {
   const dispatch = useDispatch();
   const handleLogin = async (values) => {
     const res = await axios.post(`http://localhost:9000/login`, values);
-    console.log(res.data.fullName);
+    alert(res.data.msg);
     if (res.status == 200) {
+      navigate("/");
       dispatch(
         setLoginDetails({
           dbUserId: res.data.dbUserId,
           userName: res.data.userName,
           fullName: res.data.fullName,
+          pfpImgName: res.data.pfpImgName,
         })
       );
       dispatch(setAlertMessages(res.data.msg));
-      navigate("/");
     }
   };
 
