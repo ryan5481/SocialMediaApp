@@ -27,12 +27,12 @@ const MessageCard = (props) => {
       {usersDataList.map((item, id) => {
         return (
           <>
-            <div className="recentChat">
+            <div className="recent-chat">
               <div>
                 <img src={item.image}></img>
               </div>
-              <div className="recentChatRHS">
-                <div className="recentChatRhsTop">
+              <div className="recent-chatRHS">
+                <div className="recent-chatRhsTop">
                   <div>
                     <div>{item.userName}</div>
                   </div>
@@ -40,7 +40,7 @@ const MessageCard = (props) => {
                     10:00 pm
                   </div>
                 </div>
-                <div className="recentChatRhsBottom">
+                <div className="recent-chatRhsBottom">
                   <div className="recentMessagePreview">Wassap man.</div>
                   <div>
                     <CustomizedMenus />

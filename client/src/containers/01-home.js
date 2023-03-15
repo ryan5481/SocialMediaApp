@@ -1,42 +1,12 @@
 import { useEffect, useState } from "react";
 import CustomNavbar from "../components/navigation components/navbar";
-import {
-  BsFillImageFill,
-  BsFillEmojiSmileFill,
-  BsHeart,
-  BsChat,
-} from "react-icons/bs";
+import PostFromHomeCard from "../components/cards/PostFromHomeCard";
+import { BsHeart, BsChat } from "react-icons/bs";
 import { RxShare2 } from "react-icons/rx";
 import { BiRepost } from "react-icons/bi";
-import { useSelector } from "react-redux";
 
 const Home = () => {
-  const [inputPostText, setInputPostText] = useState("");
   const [allUsersPostsList, setAllUsersPostsList] = useState([]);
-  const { dbUserId, userName, fullName, pfpImgName } = useSelector(
-    (state) => state.user
-  );
-
-  // Make posts from the homepage
-  const handleChange = async (event) => {
-    setInputPostText(event.target.value);
-  };
-  const handleOnClick = async () => {
-    setInputPostText(" ");
-    fetchAllUsersPosts();
-    const requestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        dbUserId,
-        userName,
-        fullName,
-        inputPostText,
-        pfpImgName,
-      }),
-    };
-    const res = await fetch(`http://localhost:9000/feed`, requestOptions);
-  };
 
   //Retrieve posts from all the users and display on the home page
   const fetchAllUsersPosts = async () => {
@@ -44,11 +14,15 @@ const Home = () => {
     const data = await response.json();
     // console.log(data.allUsersPosts);
     if (data) {
-      setAllUsersPostsList(data.allUsersPosts);
+      setAllUsersPostsList(data.allUsersPosts.reverse());
     }
   };
-
   console.log(allUsersPostsList);
+  // REFRESH HOME PAGE FEED >>>NOT WORKING YET!!!!
+  // const refreshFeed = () => {
+  //   console.log("refresh button clicked!");
+  // };
+
   useEffect(() => {
     fetchAllUsersPosts();
   }, []);
@@ -56,37 +30,15 @@ const Home = () => {
   return (
     <div className="full-page">
       <CustomNavbar />
-
       <div className="home-page">
         <div className="empty-gap"></div>
         <div className="feeds-column">
           <h2 style={{ textAlign: "center" }}>Home</h2>
-          <div className="home-card">
-            <img
-              src={require("../../src/uploads/profilePictures/" + pfpImgName)}
-              alt="Avatar"
-              className="profileButton"
-              size={40}
-              onClick={() => ""}
-            ></img>
-            <div>
-              <textarea
-                placeholder="What's happening?"
-                value={inputPostText}
-                onChange={handleChange}
-              ></textarea>
-              <div className="home-card-footer">
-                <div className="home-card-icons">
-                  <BsFillEmojiSmileFill className="emojiButton" size={20} />
-                  <input type="file" className="uploadImgIcon" size={20} />
-                </div>
-                <button className="button" onClick={handleOnClick}>
-                  Post
-                </button>
-              </div>
-            </div>
-          </div>
+          <PostFromHomeCard />
           <h4 style={{ textAlign: "center" }}>Latest feed</h4>
+          <div className="refresh-feed-button-space">
+            <button className="refresh-feed-button">Refresh</button>
+          </div>
 
           <div>
             {allUsersPostsList.map((item, id) => {
@@ -95,24 +47,31 @@ const Home = () => {
                   <div className="feed-card">
                     <div className="feed-card-header">
                       <img
-                        src={""}
-                        // src={require("../../src/uploads/profilePictures/" +
-                        //   item.pfpImgName)}
+                        src={require("../../src/uploads/profilePictures/" +
+                          item.pfpImgName)}
                         alt="Avatar"
                         className="profileButton"
                         size={40}
                         onClick={() => ""}
                       ></img>
+
                       <div className="feed-card-id-space">
                         <p1 style={{ fontWeight: "bold" }}>{item.fullName}</p1>
-                        <p2 style={{ color: "grey", fontSize: "15px" }}>
-                          {" "}
+                        <p2 style={{ color: "lightgrey", fontSize: "15px" }}>
                           @{item.userName}
                         </p2>
                       </div>
                     </div>
                     <div className="feed-card-body ">
                       <p>{item.inputPostText}</p>
+                      <div className="feed-image">
+                        <img
+                          src={require("../../src/uploads/usersPosts/" +
+                            item.uploadToPostImageName)}
+                          size={40}
+                          alt="Feed"
+                        ></img>
+                      </div>
                     </div>
                     <div className="feed-card-footer">
                       <BsHeart size={20} />

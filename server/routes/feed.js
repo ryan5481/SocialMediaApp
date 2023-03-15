@@ -13,7 +13,8 @@ const feedSchema = new mongoose.Schema(
     fullName: { type: String },
     inputPostText: { type: String },
     members: { type: Array },
-    postImgName: { type: String },
+    pfpImgName: { type: String },
+    uploadToPostImageName: { type: String },
   },
   { timestamps: true }
 );
@@ -26,28 +27,44 @@ const storage = multer.diskStorage({
     cb(null, "../client/src/uploads/usersPosts");
   },
   filename: function(req, file, cb) {
-    console.log(req);
+    console.log(req.body);
     cb(
       null,
-      "post_userName_" + req.body.userName + "." + file.mimetype.split("/")[1]
+      "post_userName_" +
+        req.body.userName +
+        "_" +
+        Math.ceil(Math.random() * 1e9) +
+        "." +
+        file.mimetype.split("/")[1]
     );
   },
 });
 
 const upload = multer({ storage: storage });
 
-router.post("/feed", upload.single("postImgName"), async (req, res, next) => {
-  //   console.log(req);
-  try {
-    const data = await Feed.create(req.body);
-    // console.log(req.body);
-    if (data) {
-      res.status(200).json({ msgToDev: "User's post received by the server." });
+router.post(
+  "/feed",
+  upload.single("uploadToPostImageName"),
+
+  async (req, res, next) => {
+    //   console.log(req);
+    try {
+      const postWithImg = {
+        ...req.body,
+        uploadToPostImageName: req.file.filename,
+      };
+      const data = await Feed.create(postWithImg);
+      // console.log(req.body);
+      if (data) {
+        res
+          .status(200)
+          .json({ msgToDev: "User's post received by the server." });
+      }
+    } catch (e) {
+      console.log(e);
     }
-  } catch (e) {
-    console.log(e);
   }
-});
+);
 
 // SEND ALL USER'S POSTS LIST TO THE HOME PAGE
 router.get("/feed", async (req, res) => {

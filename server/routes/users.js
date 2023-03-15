@@ -84,7 +84,7 @@ const storage = multer.diskStorage({
   },
   filename: function(req, file, cb) {
     // console.log(file);
-    console.log(req.body.userName);
+    // console.log(req.body.userName);
     cb(
       null,
       "pfp_userName_" + req.body.userName + "." + file.mimetype.split("/")[1]

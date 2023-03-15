@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { BsFillChatFill } from "react-icons/bs";
 import { AiFillHome } from "react-icons/ai";
@@ -9,6 +9,7 @@ import CreatePopupCard from "../cards/CreatePopupCard";
 const CustomNavbar = () => {
   const navigate = useNavigate();
   const [confirmCreatePopup, setConfirmCreatePopup] = useState(false);
+  const { pfpImgName } = useSelector((state) => state.user);
 
   const handleClosePopup = () => {
     setConfirmCreatePopup(false);
@@ -20,41 +21,26 @@ const CustomNavbar = () => {
         <h1>DeSocial</h1>
       </div>
       <div className="allIcons">
-        <div className="navBarItem">
-          <AiFillHome
-            className="navBarIcon home-button"
-            size={30}
-            onClick={(e) => navigate("/home")}
-          />
+        <div className="navBarItem" onClick={(e) => navigate("/home")}>
+          <AiFillHome className="navBarIcon home-button" size={30} />
           <p>Home</p>
         </div>
-        <div className="navBarItem">
-          <BsFillChatFill
-            className="navBarIcon messagesButton"
-            size={30}
-            onClick={(e) => navigate("/messages")}
-          />
+        <div className="navBarItem" onClick={(e) => navigate("/messages")}>
+          <BsFillChatFill className="navBarIcon messagesButton" size={30} />
           <p>Message</p>
         </div>
 
-        <div className="navBarItem">
+        <div className="navBarItem" onClick={() => navigate("/profile")}>
           <img
-            src={
-              "https://tse2.mm.bing.net/th?id=OIP.9B2RxsHDB_s7FZT0mljnhQHaHa"
-            }
+            src={require("../../uploads/profilePictures/" + pfpImgName)}
             alt="Avatar"
             className="navBarIcon profileButton"
             size={28}
-            onClick={() => navigate("/profile")}
           ></img>
           <p>Profile</p>
         </div>
-        <div className="navBarItem">
-          <SiAddthis
-            className="navBarIcon messagesButton"
-            size={30}
-            onClick={() => setConfirmCreatePopup(true)}
-          />
+        <div className="navBarItem" onClick={() => setConfirmCreatePopup(true)}>
+          <SiAddthis className="navBarIcon messagesButton" size={30} />
           <p>Message</p>
         </div>
       </div>

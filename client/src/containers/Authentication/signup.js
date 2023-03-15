@@ -29,33 +29,29 @@ const SignupSchema = Yup.object().shape({
 });
 
 const SignUp = () => {
+  const dummyPfp =
+    "https://tse1.mm.bing.net/th?id=OIP.mrnwgUJLZElTBKNfz89bZQAAAA";
+  // save image for upload
   const [pfpImage, setPfpImage] = useState(null);
+  //save image to render on signup screen after selection for upload
+  const [pfpImageRender, setPfpImageRender] = useState(dummyPfp);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  // const submitFormData = async (values) => {
-  //   console.log(values);
-  //   const requestOptions = {
-  //     method: " ",
-  //     headers: { "Content-Type": "application/json" },
-  //     body: JSON.stringify(values),
-  //   };
-  //   const res = await fetch(`http://localhost:9000/signup`, requestOptions);
-  //   const data = await res.json();
-  //   if (res.status == 200) {
-  //     console.log(alert(data.msg));
-  //   }
-  //   navigate("/login");
-  // };
+  const setPfpImageFunction = (e) => {
+    setPfpImage(e.target.files[0]);
+    if (e.target.files && e.target.files[0]) {
+      setPfpImageRender(URL.createObjectURL(e.target.files[0]));
+    }
+  };
+
   return (
     <>
       <Formik
         initialValues={{}}
         // validationSchema={SignupSchema}
         onSubmit={(values) => {
-          // const valuesWithPfpImg = {...values, }
           const bodyFormData = new FormData();
-
           Object.keys(values).map((item) => {
             bodyFormData.append(item, values[item]);
           });
@@ -87,13 +83,22 @@ const SignUp = () => {
             <Form>
               <div className="">
                 <div className="pfp-input loginElement">
-                  Choose a profile picture
-                  <Field
+                  <input
                     name="pfpImgName"
                     type="file"
-                    placeholder="Profile picture"
-                    onChange={(e) => setPfpImage(e.target.files[0])}
+                    id="pfpInput"
+                    onChange={(e) => setPfpImageFunction(e)}
+                    hidden
                   />
+                  <label htmlFor="pfpInput" className=" pfpInput-img">
+                    <img
+                      src={pfpImageRender}
+                      className="profileButton pfpInput-img"
+                    ></img>
+                    <div className="img-overlay-mid">
+                      <div className="img-overlay-text">Edit</div>
+                    </div>
+                  </label>
                 </div>
                 <Field
                   name="fullName"

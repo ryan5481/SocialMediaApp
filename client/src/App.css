@@ -8,6 +8,10 @@ body {
   grid-template-columns: 200px 500px;
 }
 
+textarea {
+  resize: none;
+}
+
 .button {
   width: 135px;
   height: 42px;
@@ -40,7 +44,7 @@ body {
 .allIcons {
   display: grid;
   grid-template-rows: 35% 35% 35% 35% 35%;
-  gap: 50px;
+  padding-left: 20px;
 }
 
 /* .navBarItem :hover {
@@ -49,8 +53,14 @@ body {
 
 .navBarItem {
   display: grid;
-  grid-template-columns: 10% 80%;
+  grid-template-columns: 20% 80%;
+  height: 60px;
   align-items: center;
+  border-radius: 50px;
+}
+
+.navBarItem:hover {
+  background-color: rgb(60 60 60);
 }
 
 .navBarItem p {
@@ -254,7 +264,7 @@ body {
 .form {
   color: white;
   position: relative;
-  top: 50px;
+  top: 160px;
   z-index: 1;
   border-radius: 20px;
   background-color: grey;
@@ -271,6 +281,10 @@ body {
   justify-content: center;
 }
 
+.signup-form {
+  height: 700px;
+}
+
 .form h1 {
   font-size: 50px;
   color: white;
@@ -285,7 +299,7 @@ body {
   width: 330px;
 }
 .form h2 {
-  font-size: 40px;
+  font-size: 30px;
   color: white;
 }
 
@@ -293,13 +307,8 @@ body {
   margin-bottom: 20px;
 }
 
-.signUpElement {
-  margin-bottom: 20px;
-}
-
 .titleLabel {
   color: white;
-  margin-bottom: 20px;
 }
 
 .linksSpace {
@@ -311,16 +320,44 @@ body {
 }
 
 .pfp-input {
-  width: 330px;
+  color: white;
+  width: 320px;
   border-radius: 10px;
   position: relative;
-  background-color: white;
   left: 33px;
   color: grey;
   display: grid;
   place-content: center;
-  align-items: center;
-  text-align: left;
+  align-items: left;
+  text-align: center;
+  display: grid;
+}
+
+.pfp-input img {
+  width: 80px;
+  height: 80px;
+}
+
+.img-overlay-mid {
+  transition: 0.5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+.pfpInput-img:hover .pfpInput-img {
+  opacity: 0.3;
+}
+.pfpInput-img:hover .img-overlay-mid {
+  opacity: 1;
+}
+
+.img-overlay-text {
+  color: white;
+  font-size: 16px;
 }
 
 /* MESSAGES PAGE*/
@@ -442,7 +479,7 @@ body {
 /*RECENT CHAT MESSAGE CARD*/
 /*RECENT CHAT MESSAGE CARD*/
 /*RECENT CHAT MESSAGE CARD*/
-.recentChat {
+.recent-chat {
   color: white;
   padding: 3px 2px 3px 2px;
   height: 80px;
@@ -450,13 +487,18 @@ body {
   margin-radius: 2px;
   display: grid;
   grid-template-columns: 1fr 3fr;
+  place-content: center;
+  align-items: center;
+  text-align: center;
+  vertical-align: middle;
+  justify-content: center;
 }
 
-.recentChat:hover {
+.recent-chat:hover {
   background-color: rgb(30, 30, 30);
 }
 
-.recentChat img {
+.recent-chat img {
   width: 60px;
   height: 60px;
   border-radius: 50%;
@@ -466,20 +508,21 @@ body {
   vertical-align: middle;
   justify-content: center;
 }
-.recentChatRHS {
+.recent-chatRHS {
   display: grid;
   grid-template-rows: 1fr 1fr;
   text-align: left;
+  gap: 10px;
 }
 
-.recentChatRhsTop {
+.recent-chatRhsTop {
   position: relative;
   top: 10px;
   display: grid;
   grid-template-columns: 3fr 1fr;
 }
 
-.recentChatRhsBottom {
+.recent-chatRhsBottom {
   position: relative;
   bottom: 10px;
   display: grid;
@@ -580,12 +623,21 @@ body {
 .home-card textarea {
   font-family: Verdana, Helvetica, sans-serif;
   font-size: 16px;
-  padding: 10px 10px 20px 10px;
+  padding: 10px 10px 80px 10px;
   color: white;
   width: 95%;
-  height: 100px;
+  max-height: 200px;
+  height: 160px;
+  min-height: 80px;
   border-radius: 5px;
   background-color: black;
+}
+
+.upload-post-img-preview {
+  position: relative;
+  bottom: 81px;
+  left: 10px;
+  width: 70px;
 }
 
 .home-card button {
@@ -600,10 +652,11 @@ body {
 
 .home-card-footer {
   position: relative;
-  bottom: 45px;
+  bottom: 18px;
   padding: 10px 10px 10px 20px;
   display: grid;
   grid-template-columns: 200px 900px;
+  /* border-top: 1px solid grey; */
 }
 
 .home-card-icons {
@@ -612,15 +665,32 @@ body {
   gap: 15px;
 }
 
+.refresh-feed-button-space {
+  display: grid;
+  place-content: center;
+  align-items: center;
+  text-align: center;
+  vertical-align: middle;
+  justify-content: center;
+}
+
+.refresh-feed-button {
+  background-color: black;
+  border-radius: 20px;
+  border: 1px solid #0066cc;
+  color: #0066cc;
+  width: 70px;
+  height: 25px;
+}
+
+.feed-image img {
+  width: 200px;
+}
+
 /* USERS POSTS */
 
-/* .feed-card {
-  color: white;
-  display: grid;
-  grid-template-rows: 50px 200px;
-  border-bottom: 1px solid grey;
-  margin-bottom: 20px;
-} */
+.feed-card {
+}
 
 .feed-card-header {
   display: grid;
@@ -638,7 +708,9 @@ body {
 }
 
 .feed-card-body {
-  padding: 10px 10px 10px 50px;
+  padding: 0px 10px 10px 63px;
+  position: relative;
+  bottom: ;
 }
 
 .feed-card-footer {
