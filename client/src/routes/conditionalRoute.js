@@ -30,6 +30,7 @@ const UserRoute = () => {
       <Route path="/profile" element={<Profile />} />
       <Route path="*" element={<ErrorPage />} />
       <Route path="/test" element={<HighlightDiv />} />
+
       {/* The code on line above this line is for testing purpose, remove after testing */}
     </Routes>
   );

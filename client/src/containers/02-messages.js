@@ -1,13 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import MessageCard from "../components/cards/messageCard";
 import CustomNavbar from "../components/navigation components/navbar";
 import { BsFillImageFill, BsFillEmojiSmileFill } from "react-icons/bs";
 import { IoIosSend } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
+import { io } from "socket.io-client";
+const socket = io("http://localhost:9000");
 
 const Messages = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const [message, setMessage] = useState("");
+  const [latestMessage, setLatestMessage] = useState("");
+  const [socketConnected, setSocketConnnected] = useState(false);
+
   const { dbUserId, userDetails } = useSelector((state) => state.user);
 
   const handleChange = async (event) => {
@@ -15,6 +20,7 @@ const Messages = () => {
   };
 
   const handleOnClick = async () => {
+    socket.emit("messages", message);
     setMessage("");
 
     const requestOptions = {
@@ -24,6 +30,24 @@ const Messages = () => {
     };
     const res = await fetch(`http://localhost:9000/messages`, requestOptions);
   };
+
+  useEffect(() => {
+    socket.on("connection", () => {
+      setSocketConnnected(true);
+    });
+
+    return () => {
+      socket.off("connection");
+    };
+  }, []);
+
+  // join a chat
+  useEffect(() => {
+    socket.on("messages", (replyFromServer) => {
+      console.log(replyFromServer);
+      setLatestMessage(replyFromServer);
+    });
+  }, [socket]);
 
   return (
     <div className="full-page">
@@ -44,7 +68,7 @@ const Messages = () => {
               <h3>friendName</h3>
             </div>
             <div className="chat-box-body">
-              <p>messages Here</p>
+              <p>{latestMessage}</p>
             </div>
 
             <div className="chat-BoxFooter">

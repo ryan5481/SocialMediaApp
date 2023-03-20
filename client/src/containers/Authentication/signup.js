@@ -65,7 +65,7 @@ const SignUp = () => {
             .then(function(response) {
               if (response.status == 200) {
                 alert(response.data.msg);
-                navigate("/login");
+                // navigate("/login");
               } else {
                 alert(response.data.msg);
               }

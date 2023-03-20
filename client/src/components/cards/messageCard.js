@@ -5,17 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import CustomizedMenus from "../navigation components/customStyledMenu";
 import { setUserDetails } from "../../redux/reducers/userSlice";
 
-import { io } from "socket.io-client";
-const socket = io("http://localhost:9000");
-
 const MessageCard = (props) => {
-  // useEffect(() => {
-  //   socket.on("connection");
-  //   return () => {
-  //     socket.off("connection");
-  //   };
-  // }, []);
-
   const dispatch = useDispatch();
   const [usersDataList, setUsersDataList] = useState([]);
   const { selectedUserDetails } = useSelector((state) => state.user);
@@ -23,6 +13,7 @@ const MessageCard = (props) => {
   const fetchUsersData = async () => {
     const res = await fetch("http://localhost:9000/users");
     const data = await res.json();
+    console.log(res.json());
     // const allUsers = JSON.stringify(data);
     console.log(data);
     if (res) {
@@ -30,20 +21,12 @@ const MessageCard = (props) => {
     }
   };
 
-  useEffect(() => {
-    fetchUsersData();
+  useEffect(async () => {
+    await fetchUsersData();
   }, []);
 
   return (
     <>
-      {/* <button
-        onClick={() =>
-          socket.emit("messages", "This message was sent via socket.")
-        }
-      >
-        Send via socket
-      </button> */}
-
       {usersDataList.map((item, id) => {
         return (
           <>

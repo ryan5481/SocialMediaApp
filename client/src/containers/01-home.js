@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import CustomNavbar from "../components/navigation components/navbar";
 import PostFromHomeCard from "../components/cards/PostFromHomeCard";
-import { BsHeart, BsChat } from "react-icons/bs";
+import MoreOptionsMenu from "../components/menu/moreOptionsMenu";
+import { BsHeart, BsChat, BsThreeDots } from "react-icons/bs";
 import { RxShare2 } from "react-icons/rx";
 import { BiRepost } from "react-icons/bi";
 
@@ -61,6 +62,7 @@ const Home = () => {
                           @{item.userName}
                         </p2>
                       </div>
+                      <MoreOptionsMenu postId={item._id} />
                     </div>
                     <div className="feed-card-body ">
                       <p>{item.inputPostText}</p>

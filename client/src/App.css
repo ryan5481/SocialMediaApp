@@ -60,7 +60,7 @@ textarea {
 }
 
 .navBarItem:hover {
-  background-color: rgb(60 60 60);
+  background-color: rgb(10 50 100);
 }
 
 .navBarItem p {
@@ -694,7 +694,7 @@ textarea {
 
 .feed-card-header {
   display: grid;
-  grid-template-columns: 50px 500px;
+  grid-template-columns: 50px 580px 50px;
   padding-top: 20px;
 }
 

@@ -1,17 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const mongoose = require("mongoose");
-const { Schema } = mongoose;
+const Messages = require("../models/messages");
 
 // RECEIVE MESSAGES FROM THE FRONTEND
-const messagesSchema = new mongoose.Schema(
-  { dbUserId: String, message: String, members: Array },
-  { timestamps: true }
-);
 
-const Messages = mongoose.model("Messages", messagesSchema);
-
-router.post("/messages", async (req, res) => {
+const SendMessage = async (req, res) => {
   try {
     const data = await Messages.create(req.body);
     if (data) {
@@ -21,6 +14,6 @@ router.post("/messages", async (req, res) => {
   } catch (e) {
     console.log(e);
   }
-});
+};
 
-module.exports = router;
+exports.SendMessage = SendMessage;
