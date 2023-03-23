@@ -9,7 +9,7 @@ const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server, {
   cors: {
-    pingTimeout: 60000, //socket turns off after 60 seconds of user inactiveness
+    // pingTimeout: 60000, //socket turns off after 60 seconds of user inactiveness
     origin: "http://localhost:3000" || "*",
   },
 });
@@ -35,7 +35,7 @@ const port = 9000;
 connectDb();
 
 io.on("connection", (socket) => {
-  //receive user's data from the front end
+  //receive user's data from the front end˚
   socket.on("messages", (usersData) => {
     // io.emit("messages", usersData);
     socket.join(usersData._id);
