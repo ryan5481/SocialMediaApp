@@ -41,7 +41,7 @@ const CustomNavbar = () => {
         </div>
         <div className="navBarItem" onClick={() => setConfirmCreatePopup(true)}>
           <SiAddthis className="navBarIcon messagesButton" size={30} />
-          <p>Message</p>
+          <p>Create</p>
         </div>
       </div>
       <CreatePopupCard

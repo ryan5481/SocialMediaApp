@@ -18,18 +18,18 @@ const ConditionalRoute = () => {
   }
 };
 
-const UserRoute = () => {
+const UserRoute = ({ socket }) => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/login" element={<Messages />} />
+      <Route path="/login" element={<Login socket={socket} />} />
       <Route path="/signup" element={<Messages />} />
       <Route path="/resetpassword" element={<ResetPassword />} />
-      <Route path="/home" element={<Home />} />
-      <Route path="messages" element={<Messages />} />
-      <Route path="/profile" element={<Profile />} />
+      <Route path="/home" element={<Home socket={socket} />} />
+      <Route path="messages" element={<Messages socket={socket} />} />
+      <Route path="/profile" element={<Profile socket={socket} />} />
       <Route path="*" element={<ErrorPage />} />
-      <Route path="/test" element={<HighlightDiv />} />
+      {/* <Route path="/test" element={<HighlightDiv />} /> */}
 
       {/* The code on line above this line is for testing purpose, remove after testing */}
     </Routes>

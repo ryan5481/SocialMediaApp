@@ -8,7 +8,7 @@ import axios from "axios";
 function validateEmail(value) {
   let error;
   if (!value) {
-    error = "Required";
+    error = "Email is required to reset password";
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
     error = "Invalid email address";
   }
@@ -29,7 +29,7 @@ const ResetPassword = () => {
     setInputEmail(values.email);
     // console.log(inputEmail);
 
-    const res = await axios.post("http://localhost:9000/users", {
+    const res = await axios.post("http://localhost:9000" + "/users", {
       email: inputEmail,
     });
     if (res.status == 200) {
@@ -45,7 +45,9 @@ const ResetPassword = () => {
     // setOtp(value);
     // console.log(value);
     console.log(otp);
-    const res = await axios.post("http://localhost:9000/otps", { otp: otp });
+    const res = await axios.post("http://localhost:9000" + "/otps", {
+      otp: otp,
+    });
     if (res.status == 200) {
       alert(res.data.msg);
 
@@ -55,7 +57,7 @@ const ResetPassword = () => {
 
   const resetPassword = async () => {
     console.log(newPassword);
-    const res = await axios.put("http://localhost:9000/users", {
+    const res = await axios.put("http://localhost:9000" + "/users", {
       password: newPassword,
       _id: userId,
     });
@@ -69,7 +71,7 @@ const ResetPassword = () => {
       {enterNewPwdPage == false ? (
         enterOtpPage == false ? (
           <div className="form">
-            <h1 className="logo">Social</h1>
+            <p1 className="logo">Social</p1>
             <h3 className="titleLabel">Trouble logging in?</h3>
             <p>We'll send you an OTP to reset your password.</p>
             <Formik

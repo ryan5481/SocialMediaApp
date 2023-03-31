@@ -36,7 +36,7 @@ const PostFromHomeCard = () => {
     bodyFormData.append("uploadToPostImageName", uploadToPostImage);
     axios({
       method: "post",
-      url: "http://localhost:9000/feed",
+      url: "http://localhost:9000" + "/feed",
       data: bodyFormData,
       headers: { "Content-Type": "multipart/form-data" },
     })

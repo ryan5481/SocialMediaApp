@@ -6,7 +6,7 @@ import { Dialog } from "@mui/material";
 
 const CreatePopupCard = (props) => {
   const [inputPostText, setInputPostText] = useState("");
-  const [allUsersPostsList, setAllUsersPostsList] = useState([]);
+  // const [allUsersPostsList, setAllUsersPostsList] = useState([]);
   const { dbUserId, userName, fullName, pfpImgName } = useSelector(
     (state) => state.user
   );

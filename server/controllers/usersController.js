@@ -1,11 +1,13 @@
 // SEND USERS LIST TO MESSAGES PAGE
+const Users = require("../models/users");
+
 const getUsersList = async (req, res) => {
   try {
-    const data = await Users.find();
-    console.log(res);
-    if (data) {
+    const usersList = await Users.find();
+
+    if (usersList) {
       res.json({
-        usersList: data,
+        usersList: usersList,
       });
     }
   } catch (e) {

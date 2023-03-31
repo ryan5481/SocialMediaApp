@@ -31,10 +31,27 @@ const GetFeed = async (req, res) => {
   }
 };
 
-const DeletePost = async (req, res) => {
-  console.log(req.body);
+const GetFeedById = async (req, res) => {
+  // console.log(req.params);
   try {
-    const data = await Feed.findByIdAndRemove(req.body.id);
+    userIdsPosts = await Feed.find({ dbUserId: req.params.dbUserId });
+    console.log(userIdsPosts);
+    if (userIdsPosts) {
+      res.json(userIdsPosts);
+    } else {
+      res.json({
+        msg: "Error fetching data",
+      });
+    }
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+const DeletePost = async (req, res) => {
+  console.log(req.params);
+  try {
+    const data = await Feed.findByIdAndRemove(req.params.postId);
     if (data) {
       res.json({
         msg: "Post deleted successfully.",
@@ -51,4 +68,5 @@ const DeletePost = async (req, res) => {
 
 exports.CreatePost = CreatePost;
 exports.GetFeed = GetFeed;
+exports.GetFeedById = GetFeedById;
 exports.DeletePost = DeletePost;

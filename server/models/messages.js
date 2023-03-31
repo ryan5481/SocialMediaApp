@@ -1,7 +1,16 @@
 const mongoose = require("mongoose");
 
 const messagesSchema = new mongoose.Schema(
-  { dbUserId: String, message: String, members: Array },
+  {
+    text: String,
+    userName: String,
+    dbUserId: String,
+    fullName: String,
+    pfpImgName: String,
+    socketID: String,
+    dateTime: String,
+    members: Array,
+  },
   { timestamps: true }
 );
 

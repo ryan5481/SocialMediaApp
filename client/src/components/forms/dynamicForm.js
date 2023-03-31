@@ -32,7 +32,7 @@ const DynamicForm = (props) => {
       body: JSON.stringify(values),
     };
     const res = await fetch(
-      `http://localhost:9000${props.apiEndpoint}`,
+      "http://localhost:9000" + "/" + props.apiEndpoint,
       requestOptions
     );
     const data = await res.json();

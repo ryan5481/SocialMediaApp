@@ -4,11 +4,11 @@ const Messages = require("../models/messages");
 
 // RECEIVE MESSAGES FROM THE FRONTEND
 
-const SendMessage = async (req, res) => {
+const SaveMessage = async (req, res) => {
   try {
     const data = await Messages.create(req.body);
     if (data) {
-      //console.log(data);
+      console.log(data);
       res.status(200).json({ msgToDev: "Message received by the server." });
     }
   } catch (e) {
@@ -16,4 +16,7 @@ const SendMessage = async (req, res) => {
   }
 };
 
-exports.SendMessage = SendMessage;
+// const messagesController = async (req, res) => {};
+
+exports.SaveMessage = SaveMessage;
+// exports.SendMessageToFrontEnd = SendMessageToFrontEnd;

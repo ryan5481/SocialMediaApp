@@ -7,7 +7,7 @@ const MessageCard = (props) => {
   const [usersDataList, setUsersDataList] = useState([]);
 
   const fetchUsersData = async () => {
-    const response = await fetch("http://localhost:9000/users");
+    const response = await fetch("http://localhost:9000" + "/users");
 
     const data = await response.json();
 

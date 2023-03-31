@@ -1,12 +1,14 @@
 import * as React from "react";
+import { useState } from "react";
 import { styled, alpha } from "@mui/material/styles";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import EditIcon from "@mui/icons-material/Edit";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
 import Divider from "@mui/material/Divider";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
+import DeleteAlert from "../alerts/deleteAlert";
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -51,7 +53,12 @@ const StyledMenu = styled((props) => (
   },
 }));
 
-const MoreOptionsMenu = (props) => {
+interface ChildProps {
+  fetchAllUsersPost: Function;
+}
+
+const MoreOptionsMenu = (props: ChildProps) => {
+  const [confirmDeletePopUp, setConfirmDeletePopUp] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   //   const [isDeleteConfirmPopup, setIsDeleteConfirmPopup] = React.useState(false);
   const open = Boolean(anchorEl);
@@ -66,10 +73,14 @@ const MoreOptionsMenu = (props) => {
 
   const handleDelete = async () => {
     const res = await axios.delete(
-      `http://localhost:9000/feed/${props.postId}`
+      "http://localhost:9000" + "/feed" + "/" + props.postId
     );
-    if (res) props.fetchAllUsersPosts();
-    // setIsDeleteConfirmPopup(true);
+    if (res) {
+      alert("Post deleted successfully!");
+      props.fetchAllUsersPosts();
+      handleClose();
+      // setIsDeleteConfirmPopup(true);
+    }
   };
 
   return (
@@ -94,14 +105,23 @@ const MoreOptionsMenu = (props) => {
         onClose={handleClose}
       >
         <MenuItem onClick={handleEdit} disableRipple>
-          <EditIcon />
-          Edit
+          <BookmarkIcon />
+          Save
         </MenuItem>
-        <Divider sx={{ my: 0.5 }} />
-        <MenuItem sx={{ color: "red" }} onClick={handleDelete} disableRipple>
-          <DeleteIcon sx={{ color: "red" }} />
-          Delete
-        </MenuItem>
+
+        {props.currentUserId == props.postOwnerDbId ? (
+          <>
+            <Divider sx={{ my: 0.5 }} />
+            <MenuItem
+              sx={{ color: "red" }}
+              onClick={handleDelete}
+              disableRipple
+            >
+              <DeleteIcon sx={{ color: "red" }} />
+              Delete
+            </MenuItem>
+          </>
+        ) : null}
       </StyledMenu>
     </div>
   );

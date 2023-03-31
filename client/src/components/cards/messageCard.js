@@ -1,5 +1,4 @@
 import React from "react";
-
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CustomizedMenus from "../navigation components/customStyledMenu";
@@ -11,11 +10,11 @@ const MessageCard = (props) => {
   const { selectedUserDetails } = useSelector((state) => state.user);
 
   const fetchUsersData = async () => {
-    const res = await fetch("http://localhost:9000/users");
+    const res = await fetch("http://localhost:9000" + "/users");
     const data = await res.json();
-    console.log(res.json());
-    // const allUsers = JSON.stringify(data);
-    console.log(data);
+    // console.log(data.usersList);
+    // console.log(JSON.stringify(selectedUserDetails));
+
     if (res) {
       setUsersDataList(data.usersList);
     }
@@ -27,7 +26,7 @@ const MessageCard = (props) => {
 
   return (
     <>
-      {usersDataList.map((item, id) => {
+      {usersDataList.map((item) => {
         return (
           <>
             <div
@@ -58,7 +57,7 @@ const MessageCard = (props) => {
                     style={{ color: "lightgrey" }}
                     className="recentMessagePreview"
                   >
-                    Wassap man.
+                    {props.latestMessage}
                   </div>
                   <div>
                     <CustomizedMenus />

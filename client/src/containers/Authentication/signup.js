@@ -45,6 +45,8 @@ const SignUp = () => {
     }
   };
 
+  //.replace(/\b(\w)/g, (s) => s.toUpperCase())
+
   return (
     <>
       <Formik
@@ -58,14 +60,14 @@ const SignUp = () => {
           bodyFormData.append("pfpImgName", pfpImage);
           axios({
             method: "post",
-            url: "http://localhost:9000/signup",
+            url: "http://localhost:9000" + "/signup",
             data: bodyFormData,
             headers: { "Content-Type": "multipart/form-data" },
           })
             .then(function(response) {
               if (response.status == 200) {
                 alert(response.data.msg);
-                // navigate("/login");
+                navigate("/login");
               } else {
                 alert(response.data.msg);
               }
@@ -77,9 +79,9 @@ const SignUp = () => {
         }}
       >
         {({ errors, touched, values }) => (
-          <div className="form">
-            <h1>Social</h1>
-            <h2>SignUp</h2>
+          <div className="form signup-form">
+            <p1>Social</p1>
+            <p2>SignUp</p2>
             <Form>
               <div className="">
                 <div className="pfp-input loginElement">

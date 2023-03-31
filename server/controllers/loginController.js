@@ -24,6 +24,8 @@ const Login = async (req, res) => {
             dbUserId: data._id,
             userName: data.userName,
             fullName: data.fullName,
+            email: data.email,
+            phoneNumber: data.phoneNumber,
             pfpImgName: data.pfpImgName,
           });
         } else {

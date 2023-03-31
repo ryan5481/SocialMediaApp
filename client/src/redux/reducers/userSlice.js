@@ -6,6 +6,8 @@ export const initialState = {
   dbUserId: "",
   userName: "",
   fullName: "",
+  email: "",
+  phoneNumber: "",
   selectedUserDetails: {},
   pfpImgName: "",
 };
@@ -19,6 +21,8 @@ const userSlice = createSlice({
         state.dbUserId = actions.payload.dbUserId;
         state.userName = actions.payload.userName;
         state.fullName = actions.payload.fullName;
+        state.email = actions.payload.email;
+        state.phoneNumber = actions.payload.phoneNumber;
         state.pfpImgName = actions.payload.pfpImgName;
       }
       state.isLoggedIn = !state.isLoggedIn;

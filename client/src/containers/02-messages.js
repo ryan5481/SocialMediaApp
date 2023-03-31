@@ -4,50 +4,74 @@ import CustomNavbar from "../components/navigation components/navbar";
 import { BsFillImageFill, BsFillEmojiSmileFill } from "react-icons/bs";
 import { IoIosSend } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
+
+import axios from "axios";
 import { io } from "socket.io-client";
 const socket = io("http://localhost:9000");
 
-const Messages = () => {
-  // const dispatch = useDispatch();
+const Messages = (props) => {
   const [message, setMessage] = useState("");
+  const [messages, setMessages] = useState([]);
   const [latestMessage, setLatestMessage] = useState("");
-  const [socketConnected, setSocketConnnected] = useState(false);
 
-  const { dbUserId, userDetails } = useSelector((state) => state.user);
+  const {
+    userName,
+    dbUserId,
+    fullName,
+    // pfpImgName,
+    selectedUserDetails,
+  } = useSelector((state) => state.user);
 
+  // console.log(selectedUserDetails);
   const handleChange = async (event) => {
+    event.preventDefault();
+
     setMessage(event.target.value);
+  };
+  const options = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
   };
 
   const handleOnClick = async () => {
-    socket.emit("messages", message);
+    if (message.trim() && userName) {
+      socket.emit("message", {
+        text: message,
+        userName: userName,
+        dbUserId: dbUserId,
+        fullName: fullName,
+        // pfpImgName: selectedUserDetails.pfpImgName,
+        socketID: socket.id,
+        dateTime: new Date().toLocaleDateString("en-US", options),
+      });
+      const res = await axios.post("http://localhost:9000" + "/messages", {
+        text: message,
+        userName: userName,
+        dbUserId: dbUserId,
+        fullName: fullName,
+        // pfpImgName: selectedUserDetails.pfpImgName,
+        socketID: socket.id,
+        dateTime: new Date().toLocaleDateString("en-US", options),
+      });
+    }
     setMessage("");
-
-    const requestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message, dbUserId }),
-    };
-    const res = await fetch(`http://localhost:9000/messages`, requestOptions);
   };
 
   useEffect(() => {
-    socket.on("connection", () => {
-      setSocketConnnected(true);
-    });
+    socket.on("messageResponse", (data) => setMessages([...messages, data]));
+  }, [socket, messages]);
 
-    return () => {
-      socket.off("connection");
-    };
-  }, []);
-
-  // join a chat
   useEffect(() => {
-    socket.on("messages", (replyFromServer) => {
-      console.log(replyFromServer);
-      setLatestMessage(replyFromServer);
+    messages.map((item) => {
+      item.userName == userName ? setLatestMessage(message) : null;
     });
-  }, [socket]);
+  }, [message]);
+
+  // console.log(messages);
 
   return (
     <div className="full-page">
@@ -59,16 +83,42 @@ const Messages = () => {
               <h3>Messages</h3>
             </div>
             <div className="messages-List-Div">
-              <MessageCard />
+              <MessageCard latestMessage={latestMessage} />
             </div>
           </div>
 
           <div className="chat-Box">
             <div className="chat-Box-Header">
-              <h3>friendName</h3>
+              <h3>{selectedUserDetails.fullName}</h3>
             </div>
+            {/* messages display */}
             <div className="chat-box-body">
-              <p>{latestMessage}</p>
+              {messages.map((item) =>
+                item.userName == userName ? (
+                  <div className="message-chats" key={item.id}>
+                    <p className="msg-time-stamp">{item.dateTime}</p>
+
+                    <div className="message-sender">
+                      <p>{item.text}</p>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="message-chats" key={item.id}>
+                    <p className="msg-time-stamp">{item.dateTime}</p>
+                    {/* <div>
+                      <img
+                        src={require("../../src/uploads/profilePictures" +
+                          item.pfpImgName)}
+                      ></img>
+                    </div> */}
+                    <p1 className="msg-senders-name">{item.fullName}</p1>
+
+                    <div className="message-recipient">
+                      <p>{item.text}</p>
+                    </div>
+                  </div>
+                )
+              )}
             </div>
 
             <div className="chat-BoxFooter">

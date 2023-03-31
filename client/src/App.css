@@ -5,7 +5,7 @@ body {
 }
 .full-page {
   display: grid;
-  grid-template-columns: 200px 500px;
+  grid-template-columns: 200px 1000px;
 }
 
 textarea {
@@ -35,7 +35,8 @@ textarea {
   width: 170px;
   margin: 0px 20px 0px 0px;
   color: white;
-  /* border-right: 1px solid grey; */
+  border-radius: 5px;
+  border-right: 1px solid grey;
 }
 
 .logoSpace {
@@ -68,9 +69,6 @@ textarea {
   font-size: 17px;
 }
 
-.pfp {
-}
-
 .navBar h1 {
   font-family: "Brush Script Mt", Lucida Handwriting, cursive;
   color: white;
@@ -85,6 +83,7 @@ textarea {
 
 .profileButton {
   width: 35px;
+  height: 35px;
   border-radius: 50%;
 }
 
@@ -134,54 +133,64 @@ textarea {
 /* PROFILE PAGE*/
 /* PROFILE PAGE*/
 
+.profile-page {
+  width: 800px;
+}
 .profilePageContents {
   color: white;
   position: relative;
-  left: 300px;
-  width: 600px;
-  height: 90vh;
-  margin: 40px 20px 40px 0px;
+  left: 15%;
+  width: 100%;
+  height: 94vh;
+  margin: 30px 0px 40px 0px;
+  border: 1px solid grey;
   border-radius: 5px;
   display: grid;
-  grid-template-rows: 1fr 1fr 2fr;
+  grid-template-rows: 220px 30px 70px;
   background-color: black;
+  text-align: center;
+  justify-content: center;
 }
 
-.allProfileDetials {
-  margin: 50px 10px 20px 10px;
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  grid-template-rows: 50px 80px;
-}
-
-.profileSummary {
-  display: grid;
-  grid-template-columns: 100px 150px 150px 100px;
-  grid-row-gap: 30px;
-  align-items: left;
-  color: white;
-}
-
-.profileDiv {
-  display: flex;
-  align-items: stretch;
-}
-
-.pfpDiv {
+.profile-detials-div {
   position: relative;
-  align-item: center;
-  margin-left: 30px;
-  width: 150px;
+  align-item: left;
+  vertical-align: middle;
+  padding: 10px;
+  width: 100%;
   height: 150px;
+  display: grid;
+  grid-template-columns: 200px 250px 340px;
 }
+
+.userStats {
+  width: 100%;
+  padding-left: 10px;
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-column-gap: 30px;
+  text-align: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
 .pfp {
   position: relative;
-  left: 30px;
   width: 150px;
   height: 150px;
   border-radius: 50%;
   background-color: grey;
+  place-content: center;
+  align-items: center;
   text-align: center;
+  vertical-align: middle;
+  justify-content: center;
+}
+
+.profile-details {
+  width: 300px;
+  text-align: left;
+  padding-left: 20px;
 }
 
 .userId {
@@ -189,39 +198,20 @@ textarea {
   padding-top: 6px;
 }
 
-.settingsButton {
-  display: flex;
-  padding-top: 2px;
-}
-
-.userStats {
-  display: grid;
-  grid-template-columns: repeat(3, 10px);
-  grid-column-gap: 100px;
-}
-
-.nameAndBio {
+.bio {
   color: white;
   position: relative;
-  left: 25%;
-  display: grid;
-  grid-row-gap: 10px;
-  align-items: center;
+  /border-radius: 10px;
+  width: 100%;
 }
 
-.userBio {
+.profile-buttons-container {
+  display: flex;
+  padding: 10px;
   color: white;
-  background-color: rgb(30, 30, 30);
-  width: 500px;
-  height: 100px;
-  border-radius: 5px;
-  border: 10px;
-  font-size: 17px;
-}
-
-.postsSpace {
   text-align: center;
-  color: white;
+  justify-content: center;
+  gap: 20px;
 }
 
 .textField {
@@ -234,11 +224,10 @@ textarea {
   font-family: Verdana, Helvetica, sans-serif;
   font-size: 17px;
   color: black;
-  text-align: center;
-  vertical-align: baseline;
 }
 
 .editProfile {
+  width: 150px;
   background-color: #0066cc;
 }
 
@@ -251,7 +240,34 @@ textarea {
 }
 
 .logoutButton {
+  width: 150px;
   background-color: #dc143c;
+}
+
+.posts-container {
+  width: 100%;
+  height: 470px;
+  overflow-y: scroll;
+  padding-top: 10px;
+  padding-top: 10px;
+  text-align: center;
+  justify-content: center;
+}
+
+.profile-page-posts {
+  position: relative;
+  width: 240px;
+  height: 240px;
+  border-radius: 2px;
+  margin: 10px 10px 10px 10px;
+}
+
+.profile-page-posts:hover {
+  opacity: 0.6;
+}
+
+.profile-page-posts:hover .post-img-overlay-mid {
+  opacity: 1;
 }
 
 /*AUTHENTICATION*/
@@ -267,7 +283,7 @@ textarea {
   top: 160px;
   z-index: 1;
   border-radius: 20px;
-  background-color: grey;
+  background-color: rgb(40 40 40);
   margin-left: auto;
   margin-right: auto;
   width: 400px;
@@ -281,14 +297,28 @@ textarea {
   justify-content: center;
 }
 
-.signup-form {
-  height: 700px;
+.form loginInputText-Field:focus {
+  outline: none;
 }
 
-.form h1 {
-  font-size: 50px;
+.signup-form {
+  top: 100px;
+  height: 800px;
+}
+
+.form p1 {
+  font-size: 60px;
+  position: relative;
+  bottom: 30px;
   color: white;
   font-family: "Brush Script Mt", Lucida Handwriting, cursive;
+}
+.form p2 {
+  position: relative;
+  bottom: 20px;
+  font-size: 25px;
+  color: white;
+  height: 40px;
 }
 
 .form input {
@@ -330,7 +360,6 @@ textarea {
   place-content: center;
   align-items: left;
   text-align: center;
-  display: grid;
 }
 
 .pfp-input img {
@@ -369,7 +398,7 @@ textarea {
 
 .main-page {
   position: relative;
-  left: 350px;
+  left: 150px;
   color: white;
   display: flex;
   place-content: center;
@@ -401,7 +430,7 @@ textarea {
 }
 
 .messages-List-Div {
-  height: 670px;
+  height: 642px;
   overflow: auto;
 }
 
@@ -428,14 +457,16 @@ textarea {
 }
 
 .chat-box-body {
-  height: 520px;
+  height: 525px;
   vertical-align: middle;
-  overflow: scroll;
+  padding: 15px;
+  overflow-y: scroll;
 }
 
 .chat-BoxFooter {
   vertical-align: middle;
   margin: 10px 10px 10px 10px;
+  /* border: 1px solid grey; */
   display: flex;
   place-content: center;
   align-items: center;
@@ -447,8 +478,8 @@ textarea {
 
 .message-input-field {
   position: relative;
-  margin-top: 7px;
-  margin-left: 7px;
+  margin-top: 3px;
+  margin-left: 3px;
   width: 100%;
   height: 60px;
   border-radius: 50px;
@@ -461,7 +492,11 @@ textarea {
   padding-left: 60px;
   padding-right: 30px;
   border: 1px solid grey;
-  background-color: rgb(45, 45, 45);
+  background-color: rgb(0, 0, 0);
+}
+
+.message-input-field:focus {
+  outline: none;
 }
 
 .send-icon {
@@ -473,6 +508,48 @@ textarea {
 }
 .uploadImgIcon {
   position: relative;
+}
+
+.message-chats {
+  text-align: left;
+}
+.message-chats p1 {
+  font-size: 14px;
+  padding: 5px 10px 10px 20px;
+}
+
+.msg-time-stamp {
+  font-size: 11px;
+  text-align: center;
+}
+
+.message-sender {
+  background-color: dodgerBlue;
+  max-width: 300px;
+  height: 40px;
+  padding: 1px 5px 1px 20px;
+  margin-bottom: 20px;
+  border-radius: 50px;
+  margin-left: auto;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  text-align: left;
+  justify-content: left;
+}
+
+.message-recipient {
+  background-color: rgb(60 60 60);
+  width: 300px;
+  height: 40px;
+
+  padding: 1px 5px 1px 20px;
+  border-radius: 50px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  text-align: left;
+  justify-content: left;
 }
 
 /*RECENT CHAT MESSAGE CARD*/
@@ -611,7 +688,9 @@ textarea {
   background-color: black;
   padding: 0px 25px 10px 25px;
   height: 100vh;
-  overflow: scroll;
+  overflow-y: scroll;
+  border-left: 1px solid grey;
+  border-right: 1px solid grey;
 }
 
 .home-card {
@@ -648,6 +727,7 @@ textarea {
   position: relative;
   left: 270px;
   bottom: 7px;
+  /* background-color: #5394f3; */
 }
 
 .home-card-footer {
@@ -675,11 +755,13 @@ textarea {
 }
 
 .refresh-feed-button {
+  font-size: 16px;
+  font-weight: bold;
   background-color: black;
   border-radius: 20px;
-  border: 1px solid #0066cc;
-  color: #0066cc;
-  width: 70px;
+  border: 2px solid #5394f3;
+  color: #5394f3;
+  width: 90px;
   height: 25px;
 }
 
@@ -689,7 +771,15 @@ textarea {
 
 /* USERS POSTS */
 
+.post-contents textarea {
+  height: 50px;
+}
+.post-contents textarea:focus {
+  outline: none;
+}
+
 .feed-card {
+  border-bottom: 1px solid grey;
 }
 
 .feed-card-header {
@@ -713,10 +803,40 @@ textarea {
   bottom: ;
 }
 
+.comment-container {
+  padding: 5px 30px 5px 50px;
+  height: 50px;
+  display: flex;
+}
+.comment-container input {
+  font-size: 16px;
+  color: white;
+  position: relative;
+  height: 40px;
+  width: 400px;
+  left: 10px;
+  background-color: black;
+  border: none;
+}
+
+.comment-container input:focus {
+  outline: none;
+}
+
+.send-comment-btn {
+  position: relative;
+  width: 70px;
+  color: #5394f3;
+  font-weight: bold;
+  font-size: 18px;
+  background-color: black;
+  border: none;
+}
+
 .feed-card-footer {
   padding: 10px 50px 10px 50px;
   display: flex;
   flex-direction: horizontal;
   gap: 100px;
-  border-bottom: 1px solid grey;
+  /* border-bottom: 1px solid grey; */
 }

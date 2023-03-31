@@ -16,14 +16,14 @@ const NotificationCard = () => {
       placement,
     });
   };
-  useEffect(() => {
-    if (isApiSuccessMsgOpen) {
-      openNotification();
-      setTimeout(() => {
-        dispatch(resetAlertMessages);
-      }, 5000);
-    }
-  }, [isApiSuccessMsgOpen]);
+  // useEffect(() => {
+  //   if (isApiSuccessMsgOpen) {
+  //     openNotification();
+  //     setTimeout(() => {
+  //       dispatch(resetAlertMessages);
+  //     }, 5000);
+  //   }
+  // }, [isApiSuccessMsgOpen]);
 
   return <>{contextHolder}</>;
 };
