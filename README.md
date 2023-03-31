@@ -54,8 +54,8 @@
    - `npm start`
 
 ## Preview
-![Screenshot 2023-02-19 at 8 16 55 PM](https://user-images.githubusercontent.com/73333847/219947388-d4c9b6d7-4352-4b94-aa6f-62f342148e9d.png)
-![Screenshot 2023-02-19 at 8 17 15 PM](https://user-images.githubusercontent.com/73333847/219947402-bd749587-29ed-4cf4-b2c0-54d8c73a31d2.png)
-![Screenshot 2023-02-19 at 8 17 44 PM](https://user-images.githubusercontent.com/73333847/219947424-2f8009e8-eec5-4749-9f73-8e247930843c.png)
-![Screenshot 2023-02-19 at 8 17 57 PM](https://user-images.githubusercontent.com/73333847/219947431-8900414c-72bc-482b-b8fc-2b43274b9a3b.png)
+![signup](https://user-images.githubusercontent.com/73333847/229194774-8810cbf4-0344-4be0-8674-907e37adbf5a.gif)
+![home make a post](https://user-images.githubusercontent.com/73333847/229194797-67693025-0034-4c56-ad4a-dd7935ed4828.gif)
+![message](https://user-images.githubusercontent.com/73333847/229194824-a8aa9d30-1d44-4090-8f84-b382ca0e9476.gif)
+ ![profile logout](https://user-images.githubusercontent.com/73333847/229195518-59dbd095-447d-4730-9bd0-183055a0eee5.gif)
 
