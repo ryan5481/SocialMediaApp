@@ -18,30 +18,37 @@
 
 ## Features
 
-- [x] Register page with profile picture upload
+- [x] Register page 
+  - [x] Register an account with profile picture upload
 
 - [x] Login page
+  - [x] Login using either username, phone number or password
   - [x] Reset password using Email OTP
+  
 
 - [x] Home page
   - [x] Make social media posts w/ pictures upload
-  - [x] Delete current users posts
+  - [x] Delete current user's posts
   - [ ] Like and comment on a post
 
 - [x] Messages page
-  - [x] Live chat
-  - [ ] Recent conversations
-  - [x] Chat window
-   - [x] Send text messages
-   - [ ] Send pictures
-   - [ ] Clear chat history
+ - [x] Chat window
+  - [x] Live chat with time stamp
+  - [x] Send text messages
+  - [ ] Private chat
+  - [ ] send pictures
+  - [ ] Clear chat history
 
 - [x] Profile page
   - [x] User detials and contact info
+  - [x] Log out
+  - [x] View current user's social media posts on profile page
     - [ ] Change username, email, phone number feature
     - [ ] Edit profile picture
     - [ ] Edit bio
-    - [x] Log out
+    
+- [ ] Notifications
+   
 
 ## Usage
 - `npm`
