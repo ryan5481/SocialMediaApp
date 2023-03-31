@@ -22,7 +22,7 @@
   - [x] Register an account with profile picture upload
 
 - [x] Login page
-  - [x] Login using either username, phone number or password
+  - [x] Login using either username, phone number or email address
   - [x] Reset password using Email OTP
   
 
@@ -36,7 +36,7 @@
   - [x] Live chat with time stamp
   - [x] Send text messages
   - [ ] Private chat
-  - [ ] send pictures
+  - [ ] Send pictures
   - [ ] Clear chat history
 
 - [x] Profile page
@@ -47,7 +47,7 @@
     - [ ] Edit profile picture
     - [ ] Edit bio
     
-- [ ] Notifications
+- [ ] Notifications page
    
 
 ## Usage
@@ -58,7 +58,7 @@
  - `cd server`
    - `npm start`
 
-## Preview (GIF)
+## Preview (GIFs):
 ![signup](https://user-images.githubusercontent.com/73333847/229194774-8810cbf4-0344-4be0-8674-907e37adbf5a.gif)
 ![home make a post](https://user-images.githubusercontent.com/73333847/229194797-67693025-0034-4c56-ad4a-dd7935ed4828.gif)
 ![message](https://user-images.githubusercontent.com/73333847/229194824-a8aa9d30-1d44-4090-8f84-b382ca0e9476.gif)
