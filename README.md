@@ -18,32 +18,30 @@
 
 ## Features
 
-- [x] Register page
+- [x] Register page with profile picture upload
 
 - [x] Login page
-  - [ ] Reset password
+  - [x] Reset password using Email OTP
 
-- [x] Addresses page
-  - [ ] Search other users and add as friend
-  - [ ] Delete friends from the list
-  - [ ] Start a new conversation
+- [x] Home page
+  - [x] Make social media posts w/ pictures upload
+  - [x] Delete current users posts
+  - [ ] Like and comment on a post
 
 - [x] Messages page
-  - [x] Recent conversations
-   - [ ] Start a new conversation 
-   - [ ] Delete a conversation
-  - [ ] Chat window
-   - [ ] Send text messages
+  - [x] Live chat
+  - [ ] Recent conversations
+  - [x] Chat window
+   - [x] Send text messages
    - [ ] Send pictures
    - [ ] Clear chat history
 
 - [x] Profile page
-  - [ ] Settings
+  - [x] User detials and contact info
     - [ ] Change username, email, phone number feature
-    - [ ] Change Password Feature
     - [ ] Edit profile picture
     - [ ] Edit bio
-    - [ ] Log out
+    - [x] Log out
 
 ## Usage
 - `npm`
@@ -53,7 +51,7 @@
  - `cd server`
    - `npm start`
 
-## Preview
+## Preview (GIF)
 ![signup](https://user-images.githubusercontent.com/73333847/229194774-8810cbf4-0344-4be0-8674-907e37adbf5a.gif)
 ![home make a post](https://user-images.githubusercontent.com/73333847/229194797-67693025-0034-4c56-ad4a-dd7935ed4828.gif)
 ![message](https://user-images.githubusercontent.com/73333847/229194824-a8aa9d30-1d44-4090-8f84-b382ca0e9476.gif)
