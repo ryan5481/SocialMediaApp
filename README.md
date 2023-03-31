@@ -32,7 +32,7 @@
   - [ ] Like and comment on a post
 
 - [x] Messages page
- - [x] Chat window
+  - [x] Chat window
   - [x] Live chat with time stamp
   - [x] Send text messages
   - [ ] Private chat
