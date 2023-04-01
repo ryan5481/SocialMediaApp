@@ -53,11 +53,13 @@
 ## Usage
 - `git checkout develop`
 - `npm`
-- `npm install`
+
  - `cd client`
-   - `npm start`
+    - `npm install`
+    - `npm start`
  - `cd server`
-   - `npm start`
+    - `npm install`
+    - `npm start`
 
 ## Preview (GIFs):
 ![signup](https://user-images.githubusercontent.com/73333847/229194774-8810cbf4-0344-4be0-8674-907e37adbf5a.gif)
