@@ -51,6 +51,7 @@
    
 
 ## Usage
+- git checkout develop
 - `npm`
 - `npm install`
  - `cd client`
