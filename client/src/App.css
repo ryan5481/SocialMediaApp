@@ -539,10 +539,15 @@ textarea {
 }
 
 .message-recipient {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.message-recipient-bubble {
   background-color: rgb(60 60 60);
   width: 300px;
   height: 40px;
-
   padding: 1px 5px 1px 20px;
   border-radius: 50px;
   font-size: 18px;

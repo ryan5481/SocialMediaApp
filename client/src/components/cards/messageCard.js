@@ -56,9 +56,7 @@ const MessageCard = (props) => {
                   <div
                     style={{ color: "lightgrey" }}
                     className="recentMessagePreview"
-                  >
-                    {props.latestMessage}
-                  </div>
+                  ></div>
                   <div>
                     <CustomizedMenus />
                   </div>

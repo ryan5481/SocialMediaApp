@@ -1,19 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import MessageCard from "../components/cards/messageCard";
 import CustomNavbar from "../components/navigation components/navbar";
 import { BsFillImageFill, BsFillEmojiSmileFill } from "react-icons/bs";
 import { IoIosSend } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 
-import axios from "axios";
 import { io } from "socket.io-client";
 const socket = io("http://localhost:9000");
 
 const Messages = (props) => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
-  const [latestMessage, setLatestMessage] = useState("");
-
   const {
     userName,
     dbUserId,
@@ -21,13 +18,8 @@ const Messages = (props) => {
     // pfpImgName,
     selectedUserDetails,
   } = useSelector((state) => state.user);
+  const lastMessageRef = useRef(null);
 
-  // console.log(selectedUserDetails);
-  const handleChange = async (event) => {
-    event.preventDefault();
-
-    setMessage(event.target.value);
-  };
   const options = {
     weekday: "long",
     year: "numeric",
@@ -37,23 +29,15 @@ const Messages = (props) => {
     minute: "numeric",
   };
 
-  const handleOnClick = async () => {
+  const handleSendMessage = async (e) => {
+    e.preventDefault();
     if (message.trim() && userName) {
       socket.emit("message", {
         text: message,
         userName: userName,
         dbUserId: dbUserId,
         fullName: fullName,
-        // pfpImgName: selectedUserDetails.pfpImgName,
-        socketID: socket.id,
-        dateTime: new Date().toLocaleDateString("en-US", options),
-      });
-      const res = await axios.post("http://localhost:9000" + "/messages", {
-        text: message,
-        userName: userName,
-        dbUserId: dbUserId,
-        fullName: fullName,
-        // pfpImgName: selectedUserDetails.pfpImgName,
+        pfpImgName: selectedUserDetails.pfpImgName,
         socketID: socket.id,
         dateTime: new Date().toLocaleDateString("en-US", options),
       });
@@ -62,16 +46,24 @@ const Messages = (props) => {
   };
 
   useEffect(() => {
+    socket.on(
+      "messageHistory",
+      (messagesHistoryFromDb) => {
+        setMessages(messagesHistoryFromDb);
+      },
+      []
+    );
+  });
+
+  console.log(messages);
+
+  useEffect(() => {
     socket.on("messageResponse", (data) => setMessages([...messages, data]));
   }, [socket, messages]);
 
   useEffect(() => {
-    messages.map((item) => {
-      item.userName == userName ? setLatestMessage(message) : null;
-    });
-  }, [message]);
-
-  // console.log(messages);
+    lastMessageRef.current?.scrollIntoView({ behaviour: "smooth" });
+  }, [messages]);
 
   return (
     <div className="full-page">
@@ -83,7 +75,7 @@ const Messages = (props) => {
               <h3>Messages</h3>
             </div>
             <div className="messages-List-Div">
-              <MessageCard latestMessage={latestMessage} />
+              <MessageCard />
             </div>
           </div>
 
@@ -98,44 +90,48 @@ const Messages = (props) => {
                   <div className="message-chats" key={item.id}>
                     <p className="msg-time-stamp">{item.dateTime}</p>
 
-                    <div className="message-sender">
+                    <div
+                      className="message-sender"
+                      style={{ width: `${item.text.length * 10}px` }}
+                    >
                       <p>{item.text}</p>
                     </div>
                   </div>
                 ) : (
                   <div className="message-chats" key={item.id}>
                     <p className="msg-time-stamp">{item.dateTime}</p>
-                    {/* <div>
-                      <img
-                        src={require("../../src/uploads/profilePictures" +
-                          item.pfpImgName)}
-                      ></img>
-                    </div> */}
-                    <p1 className="msg-senders-name">{item.fullName}</p1>
 
                     <div className="message-recipient">
-                      <p>{item.text}</p>
+                      <img
+                        src={require("../uploads/profilePictures/" +
+                          item.pfpImgName)}
+                        className="profileButton"
+                      ></img>
+
+                      <div
+                        className="message-recipient-bubble"
+                        style={{ width: `${item.text.length * 10}px` }}
+                      >
+                        <p>{item.text}</p>
+                      </div>
                     </div>
                   </div>
                 )
               )}
+              <div ref={lastMessageRef} />
             </div>
 
-            <div className="chat-BoxFooter">
+            <form className="chat-BoxFooter" onSubmit={handleSendMessage}>
               <BsFillEmojiSmileFill className="emojiButton" size={40} />
               <BsFillImageFill className="uploadImgIcon" size={40} />
               <input
                 className="message-input-field"
                 placeholder="Type a message"
-                onChange={handleChange}
+                onChange={(e) => setMessage(e.target.value)}
                 value={message}
+                // onKeyDown={handleOnKeyDown}
               ></input>
-              <IoIosSend
-                size={50}
-                className="send-icon"
-                onClick={handleOnClick}
-              />
-            </div>
+            </form>
           </div>
         </div>
       </div>
